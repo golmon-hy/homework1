@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>【整体院専用】理念ワークシート管理画面</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts (Noto Sans JP) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #F4F3EE; }
+    .custom-shadow { box-shadow: 0 4px 20px -2px rgba(34, 50, 36, 0.08), 0 2px 6px -1px rgba(34, 50, 36, 0.04); }
+    .active-card { border-color: #1B4332; background-color: #F4F7F5; }
+  </style>
+</head>
+<body class="text-[#2B302B] min-h-screen pb-16">
+
+  <!-- 高級感のあるヘッダー -->
+  <header class="bg-[#1B4332] text-white sticky top-0 z-30 shadow-md border-b-2 border-[#D4AF37]">
+    <div class="max-w-7xl mx-auto px-4 md:px-6 h-20 flex items-center justify-between">
+      <div class="flex items-center space-x-3.5">
+        <div class="bg-[#2D6A4F] text-[#F4F3EE] p-2.5 rounded-xl border border-[#D4AF37]/30 shadow-inner">
+          <i data-lucide="shield-check" class="h-6 w-6 text-[#D4AF37]"></i>
+        </div>
+        <div>
+          <h1 class="font-bold text-sm md:text-lg tracking-wide flex items-center">
+            理念ワークシート 管理者用コンソール
+            <span class="ml-2.5 text-[10px] md:text-xs bg-[#D4AF37] text-[#1B4332] font-black px-2 py-0.5 rounded-full">院専用</span>
+          </h1>
+          <p class="text-[10px] md:text-xs text-[#A3B19B] mt-0.5 font-medium">提出データのリアルタイム照合 ＆ 臨床メモ管理システム</p>
+        </div>
+      </div>
+      <div id="connection-badge" class="text-[10px] md:text-xs bg-[#2D6A4F] text-[#E8F5E9] border border-[#D4AF37]/20 px-3 py-1.5 rounded-full font-bold">接続確認中...</div>
+    </div>
+  </header>
+
+  <div id="toast-container" class="fixed bottom-6 right-6 z-50 w-11/12 max-w-sm pointer-events-none space-y-2"></div>
+
+  <!-- メインレイアウト -->
+  <main class="max-w-7xl mx-auto px-4 md:px-6 mt-6">
+
+    <!-- 1. 先生用セキュリティログインゲート -->
+    <div id="admin-login-section" class="max-w-md mx-auto bg-white border border-[#E5E2DB] rounded-3xl shadow-xl p-8 mt-12">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-[#F4F7F5] text-[#1B4332] rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+          <i data-lucide="lock" class="h-7 w-7 stroke-[1.5]"></i>
+        </div>
+        <h2 class="text-lg font-bold text-gray-800">整体師 認証ログイン</h2>
+        <p class="text-xs text-gray-500 mt-2 leading-relaxed">患者様のプライバシー保護のため、管理用暗証番号を入力してください。</p>
+      </div>
+
+      <div class="space-y-4 bg-[#F9FAFB] p-6 rounded-2xl border border-gray-200">
+        <div>
+          <label class="block text-[11px] font-bold text-gray-600 mb-2 text-center tracking-wider">管理用暗証番号（8桁）</label>
+          <input type="password" id="admin-passcode-input" maxlength="8" placeholder="••••••••" class="w-full text-center text-2xl font-bold tracking-widest px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1B4332]" onkeypress="if(event.key==='Enter') handleAdminLogin()"/>
+          <p class="text-[10px] text-gray-400 text-center mt-2.5">※初期パスコードは <b>20260525</b> に設定されています</p>
+        </div>
+        <button onclick="handleAdminLogin()" class="w-full bg-[#1B4332] hover:bg-[#153426] text-white font-bold py-3.5 px-4 rounded-xl shadow-md flex items-center justify-center space-x-2 text-sm">
+          <i data-lucide="unlock" class="h-4 w-4"></i><span>認証して管理画面を開く</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 2. 管理コンソール本体 -->
+    <div id="admin-console-section" class="space-y-6 hidden">
+      
+      <div class="bg-white border border-[#E5E2DB] rounded-2xl p-5 custom-shadow">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <h2 class="font-extrabold text-gray-800 text-base">登録ワークシート管理</h2>
+            <p class="text-[11px] text-gray-400 mt-0.5">登録順・五十音順での照合、および先生独自の個別カルテメモ編集</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <button onclick="syncAndReloadData()" class="bg-white text-gray-700 text-xs font-bold px-3 py-2.5 rounded-xl border border-gray-300 flex items-center space-x-1.5"><i data-lucide="refresh-cw" class="h-3.5 w-3.5" id="sync-icon"></i><span>再読み込み</span></button>
+            <button onclick="handleAdminLogout()" class="bg-[#F4F3EE] text-gray-600 text-xs font-bold px-3.5 py-2.5 rounded-xl">閉じる</button>
+          </div>
+        </div>
+
+        <hr class="border-gray-100 my-4.5" />
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+          <div class="md:col-span-7 relative">
+            <i data-lucide="search" class="absolute left-3.5 top-1/2 transform -translate-y-1/2 text-gray-400 h-4.5 w-4.5"></i>
+            <input type="text" id="admin-search-input" oninput="handleFilterAndSort()" placeholder="患者名、または8桁の暗証番号からリアルタイム検索..." class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-300 text-xs md:text-sm font-medium"/>
+          </div>
+          <div class="md:col-span-5 flex items-center space-x-2">
+            <span class="text-xs font-bold text-gray-500 shrink-0 flex items-center space-x-1"><i data-lucide="sliders-horizontal" class="h-3.5 w-3.5"></i><span>並べ替え:</span></span>
+            <select id="admin-sort-select" onchange="handleFilterAndSort()" class="w-full px-3 py-2.5 rounded-xl border border-gray-300 bg-white text-xs md:text-sm font-bold text-gray-700 cursor-pointer">
+              <option value="newest">最終更新日：新しい順 (新着順)</option>
+              <option value="oldest">最終更新日：古い順</option>
+              <option value="alphabetical">五十音順 (あいうえお順)</option>
+              <option value="status_submitted">提出済みの患者様を最優先</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+        
+        <!-- 左側：一覧 -->
+        <div class="xl:col-span-5 bg-white border border-[#E5E2DB] rounded-2xl shadow-sm overflow-hidden custom-shadow">
+          <div class="p-4 bg-gradient-to-r from-[#1B4332] to-[#2D6A4F] text-white font-bold text-xs flex justify-between items-center">
+            <span class="flex items-center space-x-1.5"><i data-lucide="users" class="h-4 w-4"></i><span>該当患者一覧</span></span>
+            <span id="patient-count-badge" class="bg-[#D4AF37] text-[#1B4332] px-2.5 py-0.5 rounded-full font-black text-[10px]">0件</span>
+          </div>
+          <div id="patient-list-container" class="divide-y divide-gray-100 max-h-[580px] overflow-y-auto"></div>
+        </div>
+
+        <!-- 右側：詳細 ＆ メモ -->
+        <div class="xl:col-span-7 space-y-4">
+          <div id="detail-card-container" class="bg-white border border-[#E5E2DB] rounded-2xl p-6 custom-shadow min-h-[520px]">
+            <div class="text-center py-28 text-gray-400 flex flex-col items-center justify-center">
+              <p class="text-sm font-bold text-[#4A504A]">患者様の選択が必要です</p>
+              <p class="text-xs text-gray-400 mt-1.5 max-w-sm">左側の一覧から患者様を選択してください。回答内容と先生専用メモ欄が表示されます。</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Firebase JavaScript SDK (v11.6.1) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    window.state = { db: null, auth: null, isFirebaseConnected: false, appId: 'seitai-work-app', allWorks: [], filteredWorks: [], selectedWork: null };
+
+    async function initFirebase() {
+      try {
+        if (typeof __app_id !== 'undefined' && __app_id) window.state.appId = __app_id;
+        if (typeof __firebase_config !== 'undefined' && __firebase_config) {
+          const firebaseConfig = JSON.parse(__firebase_config);
+          const app = initializeApp(firebaseConfig);
+          window.state.auth = getAuth(app); window.state.db = getFirestore(app);
+          await signInAnonymously(window.state.auth); window.state.isFirebaseConnected = true;
+          document.getElementById('connection-badge').className = "text-[10px] bg-[#2D6A4F] text-[#E8F5E9] border border-[#D4AF37]/30 px-3 py-1.5 rounded-full font-bold";
+          document.getElementById('connection-badge').innerText = 'クラウド同期 ON';
+        }
+      } catch (err) {
+        document.getElementById('connection-badge').className = "text-[10px] bg-amber-600 text-white border border-amber-800 px-3 py-1.5 rounded-full font-bold";
+        document.getElementById('connection-badge').innerText = 'オフライン確認モード';
+      }
+    }
+    window.addEventListener('DOMContentLoaded', async () => { await initFirebase(); lucide.createIcons(); });
+  </script>
+
+  <script>
+    const ADMIN_PASSCODE = "20260525";
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container'); const toast = document.createElement('div');
+      toast.className = `p-4 rounded-xl shadow-2xl text-white text-xs font-bold flex items-center space-x-2.5 pointer-events-auto transition-all transform translate-y-2 opacity-0 duration-300 border ${type === 'success' ? 'bg-[#1B4332] border-[#D4AF37]/30' : 'bg-slate-800 border-slate-900'}`;
+      toast.innerHTML = `<i data-lucide='sparkles' class='h-4 w-4 shrink-0 text-[#D4AF37]'></i><span>${message}</span>`;
+      container.appendChild(toast); lucide.createIcons();
+      setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 50);
+      setTimeout(() => { toast.classList.add('translate-y-2', 'opacity-0'); setTimeout(() => toast.remove(), 300); }, 4000);
+    }
+
+    async function handleAdminLogin() {
+      if (document.getElementById('admin-passcode-input').value.trim() !== ADMIN_PASSCODE) { showToast("暗証番号が一致しません。", "error"); return; }
+      document.getElementById('admin-login-section').classList.add('hidden'); document.getElementById('admin-console-section').classList.remove('hidden');
+      await loadAllWorksheets();
+    }
+
+    async function loadAllWorksheets() {
+      const localWorks = [];
+      try {
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i); if (key.startsWith('patient_work_')) localWorks.push(JSON.parse(localStorage.getItem(key)));
+        }
+      } catch (e) { console.error(e); }
+
+      if (window.state.isFirebaseConnected && window.state.db) {
+        try {
+          const { collection, onSnapshot } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
+          onSnapshot(collection(window.state.db, 'artifacts', window.state.appId, 'public', 'data', 'worksheets'), (snapshot) => {
+            const cloudWorks = []; snapshot.forEach(doc => cloudWorks.push(doc.data()));
+            const mergedMap = new Map();
+            [...localWorks, ...cloudWorks].forEach(work => {
+              const ex = mergedMap.get(work.patientCode); if (!ex || new Date(work.updatedAt) > new Date(ex.updatedAt)) mergedMap.set(work.patientCode, work);
+            });
+            window.state.allWorks = Array.from(mergedMap.values()); handleFilterAndSort();
+          });
+        } catch (err) { useLocalWorksOnly(localWorks); }
+      } else { useLocalWorksOnly(localWorks); }
+    }
+
+    function useLocalWorksOnly(localWorks) { window.state.allWorks = localWorks; handleFilterAndSort(); }
+
+    function handleFilterAndSort() {
+      const q = document.getElementById('admin-search-input').value.trim().toLowerCase();
+      const sortType = document.getElementById('admin-sort-select').value;
+      let result = [...window.state.allWorks];
+
+      if (q) result = result.filter(w => (w.patientName||'').toLowerCase().includes(q) || (w.patientCode||'').toLowerCase().includes(q));
+      
+      if (sortType === 'newest') result.sort((a,b) => new Date(b.updatedAt||0) - new Date(a.updatedAt||0));
+      else if (sortType === 'oldest') result.sort((a,b) => new Date(a.updatedAt||0) - new Date(b.updatedAt||0));
+      else if (sortType === 'alphabetical') result.sort((a,b) => (a.patientName||'').localeCompare((b.patientName||''), 'ja'));
+      else if (sortType === 'status_submitted') result.sort((a,b) => { const sA = a.status==='submitted'?1:0, sB = b.status==='submitted'?1:0; return sA !== sB ? sB - sA : new Date(b.updatedAt||0) - new Date(a.updatedAt||0); });
+
+      window.state.filteredWorks = result; renderPatientList();
+      if (window.state.selectedWork) {
+        const up = window.state.allWorks.find(w => w.patientCode === window.state.selectedWork.patientCode);
+        if (up) selectPatient(up, false);
+      }
+    }
+
+    function renderPatientList() {
+      const listContainer = document.getElementById('patient-list-container');
+      document.getElementById('patient-count-badge').innerText = `${window.state.filteredWorks.length}件`;
+      listContainer.innerHTML = '';
+
+      if (window.state.filteredWorks.length === 0) { listContainer.innerHTML = "<div class='p-12 text-center text-xs text-gray-400'>該当者はいません。</div>"; return; }
+
+      window.state.filteredWorks.forEach(work => {
+        const isSelected = window.state.selectedWork?.patientCode === work.patientCode;
+        const row = document.createElement('div');
+        row.className = `p-4 cursor-pointer border-b border-gray-100 flex items-center justify-between ${isSelected ? 'active-card border-l-4 border-l-[#1B4332]' : 'bg-white'}`;
+        row.onclick = () => selectPatient(work, true);
+        row.innerHTML = `<div class='flex-1 min-w-0 pr-2'><div class='flex items-center space-x-1.5'><span class='font-extrabold text-sm text-gray-800'>${work.patientName} 様</span><span class='text-[9px] bg-gray-100 text-gray-600 px-1.5 py-0.5 rounded-full'>${work.patientCode}</span>${work.adminMemo?`<span class='text-[9px] bg-amber-50 text-amber-800 px-1 rounded border border-amber-200'>メモあり</span>`:''}</div><div class='flex flex-wrap gap-1 mt-2'>${work.selectedWords?.map(w => `<span class='bg-[#EAF0EB] text-[#1B4332] px-1.5 py-0.5 rounded text-[10px] font-bold'>${w}</span>`).join('')||''}</div></div><div class='text-right shrink-0'><span class='text-[9px] px-2 py-0.5 rounded-full font-bold ${work.status==='submitted'?'bg-[#D1E7DD] text-[#0F5132]':'bg-amber-100 text-amber-800'}'>${work.status==='submitted'?'提出済':'保存中'}</span></div>`;
+        listContainer.appendChild(row);
+      });
+      lucide.createIcons();
+    }
+
+    function selectPatient(work, alert = true) {
+      window.state.selectedWork = work; if (alert) showToast(`${work.patientName} 様の回答を表示。`, "success");
+      const detailContainer = document.getElementById('detail-card-container');
+      detailContainer.innerHTML = `
+        <div class='flex justify-between items-start border-b pb-3 mb-4'>
+          <div><h3 class='font-black text-lg text-[#1B4332]'>${work.patientName} 様</h3><p class='text-[10px] text-gray-400'>暗証番号: ${work.patientCode}</p></div>
+          <button onclick='clearSelection()' class='text-xs text-gray-400 border px-2.5 py-1 rounded-xl hover:bg-gray-50'>閉じる</button>
+        </div>
+        <div class='grid grid-cols-1 lg:grid-cols-12 gap-5'>
+          <div class='lg:col-span-7 space-y-3.5'>
+            ${[1,2,3].map(num => {
+              const word = work.selectedWords?.[num-1]; if(!word) return '';
+              const def = work.definitions?.[num] || {meaning:'', reason:''};
+              return `<div class='bg-white border rounded-xl p-3.5 space-y-2.5 shadow-sm'><span class='bg-[#1B4332] text-[#D4AF37] font-bold text-xs px-2 py-0.5 rounded'>理念 ${num} : 【${word}】</span><div class='bg-gray-50 p-2.5 rounded text-xs'><p class='text-[9px] font-bold text-emerald-800 mb-0.5'>Q1.人生における意味</p><p class='font-semibold text-gray-800'>${def.meaning||'(未入力)'}</p></div><div class='bg-gray-50 p-2.5 rounded text-xs'><p class='text-[9px] font-bold text-indigo-900 mb-0.5'>Q2.その理由</p><p class='font-medium text-gray-700'>${def.reason||'(未入力)'}</p></div></div>`;
+            }).join('')}
+          </div>
+          <div class='lg:col-span-5 flex flex-col space-y-2 bg-[#FCFAF6] p-3.5 rounded-xl border border-gray-200'>
+            <h4 class='text-xs font-bold text-[#1B4332] flex items-center space-x-1'><i data-lucide='notebook-pen' class='h-3.5 w-3.5'></i><span>先生専用 施術メモ</span></h4>
+            <textarea id='admin-memo-textarea' rows='10' placeholder='施術中のアプローチや変化などを記録...' class='w-full flex-1 p-2.5 rounded-xl border border-gray-300 text-xs bg-white font-semibold resize-none shadow-inner'>${work.adminMemo||''}</textarea>
+            <button id='save-memo-btn' onclick="saveAdminMemo('${work.patientCode}')" class='w-full bg-[#1B4332] hover:bg-[#153426] text-white font-bold py-2.5 px-3 rounded-xl flex items-center justify-center space-x-1 text-xs'><i data-lucide='save' class='h-3.5 w-3.5'></i><span>対話メモを保存</span></button>
+          </div>
+        </div>`;
+      lucide.createIcons();
+    }
+
+    async function saveAdminMemo(code) {
+      const txt = document.getElementById('admin-memo-textarea').value;
+      const target = window.state.allWorks.find(w => w.patientCode === code);
+      if (target) { target.adminMemo = txt; localStorage.setItem(`patient_work_${code}`, JSON.stringify(target)); }
+      if (window.state.isFirebaseConnected && window.state.db) {
+        try {
+          const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
+          await setDoc(doc(window.state.db, 'artifacts', window.state.appId, 'public', 'data', 'worksheets', code), { adminMemo: txt, memoUpdatedAt: new Date().toISOString() }, { merge: true });
+        } catch (e) { console.error(e); }
+      }
+      showToast("メモを保存しました！", "success"); handleFilterAndSort();
+    }
+
+    function clearSelection() { window.state.selectedWork = null; handleFilterAndSort(); }
+    async function syncAndReloadData() { await loadAllWorksheets(); showToast("データを同期しました。", "success"); }
+    function handleAdminLogout() { window.state.allWorks = []; window.state.filteredWorks = []; window.state.selectedWork = null; document.getElementById('admin-passcode-input').value = ''; document.getElementById('admin-login-section').classList.remove('hidden'); document.getElementById('admin-console-section').classList.add('hidden'); clearSelection(); }
+  </script>
+</body>
+</html>
