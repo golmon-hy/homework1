@@ -4,27 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>理念・生き方ワークシート</title>
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  <!-- Google Fonts (Noto Sans JP) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Noto Sans JP', sans-serif;
-      background-color: #F4F3EE;
-    }
-    .word-grid-btn {
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    body { font-family: 'Noto Sans JP', sans-serif; background-color: #F4F3EE; }
+    .word-grid-btn { transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+    .q3-box { background: #FFFDF5; border-left: 4px solid #D4AF37; }
   </style>
 </head>
 <body class="text-[#2B302B] min-h-screen pb-16">
 
-  <!-- ヘッダー -->
   <header class="bg-[#1B4332] text-white sticky top-0 z-20 shadow-md border-b-2 border-[#D4AF37]">
     <div class="max-w-xl mx-auto px-4 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-2.5">
@@ -37,18 +29,16 @@
         </div>
       </div>
       <div id="connection-badge" class="text-[10px] bg-[#2D6A4F] text-[#E8F5E9] border border-[#D4AF37]/20 px-2.5 py-1 rounded-full font-bold hidden">
-        接続中
+        接続済み
       </div>
     </div>
   </header>
 
-  <!-- 通知用トースト -->
   <div id="toast-container" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 w-11/12 max-w-sm pointer-events-none"></div>
 
-  <!-- メインコンテンツ -->
   <main class="max-w-xl mx-auto px-4 mt-4">
 
-    <!-- 1. ログイン画面 -->
+    <!-- ログイン画面 -->
     <div id="login-section" class="bg-white border border-[#E5E2DB] rounded-3xl shadow-md p-6 mt-2">
       <div class="text-center mb-6">
         <span class="inline-block bg-[#F4F7F5] text-[#1B4332] text-[10px] font-bold px-3 py-1 rounded-full mb-3 border border-[#C7DCD0]">
@@ -60,39 +50,42 @@
           先生と取り決めた<strong>8桁の暗証番号</strong>を入力してください。
         </p>
       </div>
-
       <div class="space-y-4 bg-[#FCFAF7] p-5 rounded-2xl border border-[#ECE9E0]">
         <div>
           <label class="block text-[11px] font-bold text-gray-600 mb-1.5 text-center">
             誕生日4桁 ＋ 電話番号下4桁（計8桁）
           </label>
-          <input
-            type="tel"
-            id="login-code-input"
-            maxlength="8"
-            placeholder="例：10125678"
-            class="w-full text-center text-xl font-bold tracking-widest px-3 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:border-transparent"
-          />
+          <input type="tel" id="login-code-input" maxlength="8" placeholder="例：10125678"
+            class="w-full text-center text-xl font-bold tracking-widest px-3 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1B4332] focus:border-transparent"/>
           <p class="text-[10px] text-gray-400 text-center mt-2 leading-relaxed">
             ※（10月12日生まれ、電話番号の下4桁が5678の場合 ＝ 10125678）<br>
-            この8桁の数字をキーにして、あなたのデータが暗号保存されます。
+            この8桁の数字をキーにして、あなたのデータが安全に保存されます。
           </p>
         </div>
-
-        <button
-          onclick="handleLogin()"
-          class="w-full bg-[#1B4332] hover:bg-[#153426] text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-md flex items-center justify-center space-x-2 text-sm"
-        >
+        <button onclick="handleLogin()"
+          class="w-full bg-[#1B4332] hover:bg-[#153426] text-white font-bold py-3.5 px-4 rounded-xl transition-all shadow-md flex items-center justify-center space-x-2 text-sm">
           <span>ワークシートを開く</span>
           <i data-lucide="chevron-right" class="h-4 w-4"></i>
         </button>
       </div>
+
+      <!-- ワークの進め方 -->
+      <div class="mt-5 bg-gradient-to-br from-[#EAF0EB] to-[#F4F3EE] border border-[#C7DCD0] rounded-2xl p-4">
+        <h3 class="font-bold text-[#1B4332] text-xs flex items-center mb-1.5">
+          <i data-lucide="book-open" class="h-4 w-4 mr-1.5"></i>ワークの進め方
+        </h3>
+        <ol class="space-y-1 text-[11px] text-gray-700 leading-relaxed list-none">
+          <li>① お名前をフルネームで記入します。</li>
+          <li>② 52の言葉から、あなたの理念となる言葉を<b>直感で3つ</b>選びます。</li>
+          <li>③ 選んだ言葉ごとに<b>3つの質問</b>にお答えください。</li>
+          <li>④「院へ提出する」を押して完了です！</li>
+        </ol>
+      </div>
     </div>
 
-    <!-- 2. ワークシート本体 -->
+    <!-- ワークシート本体 -->
     <div id="editor-section" class="space-y-6 hidden">
-      
-      <!-- ログイン情報 -->
+
       <div class="bg-white border border-[#E5E2DB] rounded-2xl p-4 flex items-center justify-between shadow-sm">
         <div class="flex items-center space-x-3">
           <div class="w-9 h-9 bg-[#F4F7F5] rounded-full flex items-center justify-center text-[#1B4332]">
@@ -106,104 +99,78 @@
           </div>
         </div>
         <button onclick="handleLogout()" class="text-xs text-gray-400 hover:text-rose-700 flex items-center space-x-1">
-          <i data-lucide="log-out" class="h-3.5 w-3.5"></i>
-          <span>閉じる</span>
+          <i data-lucide="log-out" class="h-3.5 w-3.5"></i><span>閉じる</span>
         </button>
       </div>
 
-      <!-- ガイド -->
-      <div class="bg-gradient-to-br from-[#EAF0EB] to-[#F4F3EE] border border-[#C7DCD0] rounded-2xl p-4">
-        <h3 class="font-bold text-[#1B4332] text-xs flex items-center mb-1.5">
-          <i data-lucide="book-open" class="h-4 w-4 mr-1.5 text-[#1B4332]"></i>
-          ワークの進め方
-        </h3>
-        <ul class="space-y-1 text-[11px] text-gray-700 leading-relaxed">
-          <li>① あなたのお名前をフルネームで記入します（先生があなたを認識するために必要です）。</li>
-          <li>② 画像に記載されている52単語の中から、あなたの生き方・あり方の理念となる言葉を<b>直感で3つ</b>選んでタップしてください。</li>
-          <li>③ 選んだ言葉それぞれについて、<b>あなたにとっての意味</b>と、<b>その理由</b>の2つを書き込みます。</li>
-          <li>④ 完成したら<b>「院へ提出する」</b>を押して完了です！</li>
-        </ul>
-      </div>
-
-      <!-- STEP 1: お名前入力 -->
+      <!-- STEP 1: お名前 -->
       <div class="bg-white border border-[#E5E2DB] rounded-3xl shadow-sm p-5">
         <h3 class="font-bold text-gray-800 text-sm flex items-center mb-3">
-          <span class="w-5.5 h-5.5 bg-[#1B4332] text-white rounded-full flex items-center justify-center text-[10px] font-bold mr-2">1</span>
+          <span class="w-6 h-6 bg-[#1B4332] text-white rounded-full flex items-center justify-center text-[10px] font-bold mr-2">1</span>
           あなたのお名前を教えてください
         </h3>
-        <input
-          type="text"
-          id="patient-name-input"
-          placeholder="例：山田 太郎"
-          class="w-full px-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1B4332] text-xs md:text-sm font-semibold"
-        />
+        <input type="text" id="patient-name-input" placeholder="例：山田 太郎"
+          class="w-full px-3 py-2.5 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#1B4332] text-sm font-semibold"/>
       </div>
 
       <!-- STEP 2: 単語選択 -->
       <div class="bg-white border border-[#E5E2DB] rounded-3xl shadow-sm p-5">
         <div class="flex items-center justify-between mb-4 pb-3 border-b border-gray-100">
-          <div>
-            <h3 class="font-bold text-gray-800 text-sm flex items-center">
-              <span class="w-5.5 h-5.5 bg-[#1B4332] text-white rounded-full flex items-center justify-center text-[10px] font-bold mr-2">2</span>
-              生き方の理念となる単語を【3つ】選ぶ
-            </h3>
-          </div>
-          <span class="text-xs font-bold px-2.5 py-1 rounded-xl bg-amber-50 text-amber-900 border border-amber-200" id="selection-counter">
+          <h3 class="font-bold text-gray-800 text-sm flex items-center">
+            <span class="w-6 h-6 bg-[#1B4332] text-white rounded-full flex items-center justify-center text-[10px] font-bold mr-2">2</span>
+            生き方の理念となる単語を【3つ】選ぶ
+          </h3>
+          <span class="text-xs font-bold px-2.5 py-1 rounded-xl bg-amber-50 text-amber-900 border border-amber-200">
             選択数: <span id="selected-count" class="font-extrabold">0</span> / 3
           </span>
         </div>
-
         <div id="selected-tags-container" class="flex flex-wrap gap-2 mb-4 hidden bg-[#FAF9F5] p-3 rounded-xl border border-dashed border-[#E5E2DB]"></div>
         <div id="words-grid" class="grid grid-cols-3 sm:grid-cols-4 gap-2"></div>
       </div>
 
-      <!-- STEP 3: 言葉の定義入力 -->
+      <!-- STEP 3: 言葉の定義入力（Q1/Q2/Q3） -->
       <div class="bg-white border border-[#E5E2DB] rounded-3xl shadow-sm p-5">
         <h3 class="font-bold text-gray-800 text-sm flex items-center mb-1">
-          <span class="w-5.5 h-5.5 bg-[#1B4332] text-white rounded-full flex items-center justify-center text-[10px] font-bold mr-2">3</span>
-          選んだ言葉の「意味・解釈」を2つのステップで考える
+          <span class="w-6 h-6 bg-[#1B4332] text-white rounded-full flex items-center justify-center text-[10px] font-bold mr-2">3</span>
+          選んだ言葉について、3つの質問に答える
         </h3>
-        <p class="text-[10px] text-gray-400 mb-4 pl-7">あなた自身にとって、その言葉はどうあるべきか、じっくり心に問いかけてみてください。</p>
+        <p class="text-[10px] text-gray-400 mb-4 pl-8">じっくり心に問いかけながら、思いのままにお書きください。</p>
 
         <div id="definition-placeholders" class="text-center py-8 bg-[#FCFAF7] rounded-2xl border border-dashed border-[#ECE9E0]">
           <i data-lucide="heart" class="h-8 w-8 text-gray-300 mx-auto mb-2 animate-pulse"></i>
-          <p class="text-xs font-medium text-gray-500">言葉を選択すると、ここに記述フォームが表示されます。</p>
+          <p class="text-xs font-medium text-gray-500">言葉を選択すると、ここに質問が表示されます。</p>
         </div>
-
         <div id="definition-inputs-container" class="space-y-6 hidden"></div>
       </div>
 
-      <!-- アクションエリア -->
+      <!-- アクション -->
       <div class="bg-white border border-[#E5E2DB] rounded-3xl p-5 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="text-center sm:text-left">
           <h4 class="font-bold text-gray-800 text-xs">一時保存も可能です</h4>
-          <p class="text-[10px] text-gray-500 mt-0.5">一時保存をしておけば、いつでも同じ8桁の番号から再開できます。</p>
+          <p class="text-[10px] text-gray-500 mt-0.5">同じ8桁の番号でいつでも再開できます。</p>
         </div>
         <div class="flex items-center space-x-3 w-full sm:w-auto">
-          <button onclick="saveWork(false)" class="flex-1 sm:flex-none text-center bg-[#EFEFEA] text-[#444444] font-bold py-3 px-5 rounded-xl text-xs flex items-center justify-center space-x-1">
+          <button onclick="saveWork(false)" class="flex-1 sm:flex-none bg-[#EFEFEA] text-[#444444] font-bold py-3 px-5 rounded-xl text-xs flex items-center justify-center space-x-1">
             <i data-lucide="save" class="h-4 w-4"></i><span>一時保存</span>
           </button>
-          <button onclick="saveWork(true)" class="flex-1 sm:flex-none text-center bg-[#1B4332] text-white font-bold py-3 px-6 rounded-xl text-xs flex items-center justify-center space-x-1 shadow-md">
+          <button onclick="saveWork(true)" class="flex-1 sm:flex-none bg-[#1B4332] text-white font-bold py-3 px-6 rounded-xl text-xs flex items-center justify-center space-x-1 shadow-md">
             <i data-lucide="send" class="h-4 w-4"></i><span>院へ提出する</span>
           </button>
         </div>
       </div>
-
     </div>
 
-    <!-- 3. 提出完了画面 -->
+    <!-- 提出完了画面 -->
     <div id="submitted-section" class="max-w-md mx-auto bg-white border border-[#E5E2DB] rounded-3xl shadow-sm p-6 text-center hidden">
       <div class="w-14 h-14 bg-[#EAF0EB] text-[#1B4332] rounded-full flex items-center justify-center mx-auto mb-3">
         <i data-lucide="check" class="h-7 w-7 stroke-[3]"></i>
       </div>
       <h2 class="text-lg font-bold text-gray-800">提出が完了しました！</h2>
       <p class="text-xs text-gray-500 mt-2">データは暗証番号 <strong id="submitted-patient-code" class="text-[#1B4332]"></strong> に安全に保存されました。</p>
-
       <div class="bg-[#FAF9F5] border border-[#E5E2DB] rounded-2xl p-4 my-5 text-left text-xs space-y-1.5">
-        <div><span class="text-gray-400">お名前：</span> <span id="summary-name" class="font-bold"></span></div>
-        <div class="pt-1 flex items-center"><span class="text-gray-400 shrink-0">選んだ言葉：</span><span id="summary-words" class="inline-flex flex-wrap gap-1"></span></div>
+        <div><span class="text-gray-400">お名前：</span><span id="summary-name" class="font-bold"></span></div>
+        <div class="pt-1 flex items-center flex-wrap gap-1"><span class="text-gray-400 shrink-0">選んだ言葉：</span><span id="summary-words" class="inline-flex flex-wrap gap-1"></span></div>
       </div>
-
       <div class="p-4 bg-[#EAF0EB] text-xs text-[#1B4332] rounded-2xl text-left leading-relaxed">
         <p class="font-bold mb-1">💡 先生への報告方法</p>
         公式LINE等で「宿題が終わりました！暗証番号は <b><span id="summary-code-report"></span></b> です」とメッセージを送ってください。
@@ -216,37 +183,59 @@
 
   </main>
 
+  <!-- ======== Firebase 初期化（★ここを書き換えた）======== -->
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
     import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-    window.state = { db: null, auth: null, isFirebaseConnected: false, appId: 'seitai-work-app', patientCode: '', selectedWords: [], definitions: { 1: { meaning: '', reason: '' }, 2: { meaning: '', reason: '' }, 3: { meaning: '', reason: '' } } };
+    window.state = {
+      db: null, auth: null, isFirebaseConnected: false,
+      appId: 'seitai-work-app', patientCode: '', selectedWords: [],
+      definitions: {
+        1: { meaning: '', reason: '', episode: '' },
+        2: { meaning: '', reason: '', episode: '' },
+        3: { meaning: '', reason: '', episode: '' }
+      }
+    };
 
     async function initFirebase() {
       try {
-        if (typeof __app_id !== 'undefined' && __app_id) window.state.appId = __app_id;
-        if (typeof __firebase_config !== 'undefined' && __firebase_config) {
-          const firebaseConfig = JSON.parse(__firebase_config);
-          const app = initializeApp(firebaseConfig);
-          window.state.auth = getAuth(app);
-          window.state.db = getFirestore(app);
-          await signInAnonymously(window.state.auth);
-          window.state.isFirebaseConnected = true;
-          document.getElementById('connection-badge').classList.remove('hidden');
-        }
+        const firebaseConfig = {
+          apiKey: "AIzaSyBuPQDZC7yPe-uP4PkVuqCOjNuGQmFUqOw",
+          authDomain: "rinen-work-sakadoseitai.firebaseapp.com",
+          projectId: "rinen-work-sakadoseitai",
+          storageBucket: "rinen-work-sakadoseitai.firebasestorage.app",
+          messagingSenderId: "79507491035",
+          appId: "1:79507491035:web:9f29d4c7f74ccbdc8b24fe"
+        };
+        const app = initializeApp(firebaseConfig);
+        window.state.auth = getAuth(app);
+        window.state.db = getFirestore(app);
+        await signInAnonymously(window.state.auth);
+        window.state.isFirebaseConnected = true;
+        const badge = document.getElementById('connection-badge');
+        badge.classList.remove('hidden');
+        badge.innerText = '接続済み';
       } catch (err) {
         console.error(err);
-        document.getElementById('connection-badge').classList.remove('hidden');
-        document.getElementById('connection-badge').className = "text-[10px] bg-amber-600 text-white border border-amber-200 px-2.5 py-1 rounded-full font-bold";
-        document.getElementById('connection-badge').innerText = 'ローカルモード';
+        const badge = document.getElementById('connection-badge');
+        badge.classList.remove('hidden');
+        badge.className = "text-[10px] bg-amber-600 text-white border border-amber-200 px-2.5 py-1 rounded-full font-bold";
+        badge.innerText = 'ローカルモード';
       }
     }
-    window.addEventListener('DOMContentLoaded', async () => { await initFirebase(); lucide.createIcons(); buildWordsGrid(); });
+
+    window.addEventListener('DOMContentLoaded', async () => {
+      await initFirebase();
+      lucide.createIcons();
+      buildWordsGrid();
+    });
   </script>
+  <!-- ======== ここまで ======== -->
 
   <script>
-    const WORDS_LIST = ["愛", "いたわり", "援助", "思いやり", "感謝", "完全", "希望", "勤勉", "謙虚", "献身", "健全", "向上心", "公平", "最善", "正直", "純粋", "従順", "実践", "信仰", "親切", "栄誉", "慎重", "真剣", "真理", "信用", "信頼", "正義", "成長", "誠実", "責任感", "善良", "尊敬", "慎み", "忠実", "道徳", "努力", "忍耐", "熱心", "平安", "平穏", "平和", "奉仕", "誇り", "真面目", "約束", "優しさ", "安らぎ", "勇気", "喜び", "礼儀正しい", "卓越", "上質"];
+    const WORDS_LIST = ["愛","いたわり","援助","思いやり","感謝","完全","希望","勤勉","謙虚","献身","健全","向上心","公平","最善","正直","純粋","従順","実践","信仰","親切","栄誉","慎重","真剣","真理","信用","信頼","正義","成長","誠実","責任感","善良","尊敬","慎み","忠実","道徳","努力","忍耐","熱心","平安","平穏","平和","奉仕","誇り","真面目","約束","優しさ","安らぎ","勇気","喜び","礼儀正しい","卓越","上質"];
 
     function showToast(message, type = 'info') {
       const container = document.getElementById('toast-container');
@@ -261,7 +250,8 @@
     function buildWordsGrid() {
       const grid = document.getElementById('words-grid'); grid.innerHTML = '';
       WORDS_LIST.forEach(word => {
-        const btn = document.createElement('button'); btn.id = `btn-word-${word}`; btn.innerText = word;
+        const btn = document.createElement('button');
+        btn.id = `btn-word-${word}`; btn.innerText = word;
         btn.className = "word-grid-btn py-2.5 px-1 rounded-xl text-xs font-semibold bg-white text-gray-700 border border-gray-200";
         btn.onclick = () => selectWord(word); grid.appendChild(btn);
       });
@@ -270,7 +260,8 @@
     async function handleLogin() {
       const codeInput = document.getElementById('login-code-input').value.trim();
       if (!/^\d{8}$/.test(codeInput)) { showToast("暗証番号は8桁の数字を入力してください。", "warning"); return; }
-      window.state.patientCode = codeInput; document.getElementById('display-patient-code').innerText = codeInput;
+      window.state.patientCode = codeInput;
+      document.getElementById('display-patient-code').innerText = codeInput;
       await loadPatientData(codeInput);
       document.getElementById('login-section').classList.add('hidden');
       document.getElementById('editor-section').classList.remove('hidden');
@@ -288,24 +279,39 @@
       }
       const localData = localStorage.getItem(`patient_work_${code}`);
       if (localData) { applyLoadedData(JSON.parse(localData)); showToast("保存データを読み込みました。", "success"); }
-      else { window.state.selectedWords = []; window.state.definitions = { 1: { meaning: '', reason: '' }, 2: { meaning: '', reason: '' }, 3: { meaning: '', reason: '' } }; document.getElementById('patient-name-input').value = ''; }
+      else {
+        window.state.selectedWords = [];
+        window.state.definitions = {
+          1: { meaning: '', reason: '', episode: '' },
+          2: { meaning: '', reason: '', episode: '' },
+          3: { meaning: '', reason: '', episode: '' }
+        };
+        document.getElementById('patient-name-input').value = '';
+      }
     }
 
     function applyLoadedData(data) {
       window.state.selectedWords = data.selectedWords || [];
-      const loadedDefs = data.definitions || {};
+      const d = data.definitions || {};
       window.state.definitions = {
-        1: { meaning: loadedDefs[1]?.meaning || (typeof loadedDefs[1] === 'string' ? loadedDefs[1] : ''), reason: loadedDefs[1]?.reason || '' },
-        2: { meaning: loadedDefs[2]?.meaning || (typeof loadedDefs[2] === 'string' ? loadedDefs[2] : ''), reason: loadedDefs[2]?.reason || '' },
-        3: { meaning: loadedDefs[3]?.meaning || (typeof loadedDefs[3] === 'string' ? loadedDefs[3] : ''), reason: loadedDefs[3]?.reason || '' }
+        1: { meaning: d[1]?.meaning || '', reason: d[1]?.reason || '', episode: d[1]?.episode || '' },
+        2: { meaning: d[2]?.meaning || '', reason: d[2]?.reason || '', episode: d[2]?.episode || '' },
+        3: { meaning: d[3]?.meaning || '', reason: d[3]?.reason || '', episode: d[3]?.episode || '' }
       };
       document.getElementById('patient-name-input').value = data.patientName || '';
     }
 
     function handleLogout() {
-      window.state.patientCode = ''; window.state.selectedWords = []; window.state.definitions = { 1: { meaning: '', reason: '' }, 2: { meaning: '', reason: '' }, 3: { meaning: '', reason: '' } };
-      document.getElementById('login-code-input').value = ''; document.getElementById('login-section').classList.remove('hidden');
-      document.getElementById('editor-section').classList.add('hidden'); document.getElementById('submitted-section').classList.add('hidden');
+      window.state.patientCode = ''; window.state.selectedWords = [];
+      window.state.definitions = {
+        1: { meaning: '', reason: '', episode: '' },
+        2: { meaning: '', reason: '', episode: '' },
+        3: { meaning: '', reason: '', episode: '' }
+      };
+      document.getElementById('login-code-input').value = '';
+      document.getElementById('login-section').classList.remove('hidden');
+      document.getElementById('editor-section').classList.add('hidden');
+      document.getElementById('submitted-section').classList.add('hidden');
       buildWordsGrid();
     }
 
@@ -319,41 +325,98 @@
       updateSelectionUI();
     }
 
+    // Q3の質問文をQ2の回答でリアルタイム更新
+    function updateQ3Label(num) {
+      const word = window.state.selectedWords[num - 1];
+      const q2val = (document.getElementById(`def-reason-input-${num}`)?.value || '').trim();
+      const label = document.getElementById(`q3-label-${num}`);
+      if (!label || !word) return;
+      if (q2val) {
+        label.innerHTML = `<span class='text-[#1B4332] font-extrabold'>Q3. </span>あなたが「${word}」というキーワードを選び、<br><span class='inline-block my-1 px-2 py-1 bg-[#FFFBEA] border border-[#D4AF37] rounded text-[#8B6914]'>「${q2val}」</span><br>のように感じるようになった、人生の中でのエピソードや経験はどんなことでしたか？`;
+      } else {
+        label.innerHTML = `<span class='text-[#1B4332] font-extrabold'>Q3. </span>Q2にお答えいただくと、あなただけの質問が完成します。`;
+      }
+    }
+
     function updateSelectionUI() {
-      document.querySelectorAll('.word-grid-btn').forEach(btn => btn.className = "word-grid-btn py-2.5 px-1 rounded-xl text-xs font-semibold bg-white text-gray-700 border border-gray-200");
+      document.querySelectorAll('.word-grid-btn').forEach(btn =>
+        btn.className = "word-grid-btn py-2.5 px-1 rounded-xl text-xs font-semibold bg-white text-gray-700 border border-gray-200");
       window.state.selectedWords.forEach(word => {
         const btn = document.getElementById(`btn-word-${word}`);
         if (btn) btn.className = "word-grid-btn py-2.5 px-1 rounded-xl text-xs font-bold bg-[#1B4332] text-white border-emerald-800 shadow scale-[1.03]";
       });
       document.getElementById('selected-count').innerText = window.state.selectedWords.length;
-      
+
       const tagsContainer = document.getElementById('selected-tags-container');
       if (window.state.selectedWords.length > 0) {
         tagsContainer.classList.remove('hidden');
-        tagsContainer.innerHTML = window.state.selectedWords.map(word => `<span onclick="selectWord('${word}')" class="inline-flex items-center space-x-1 bg-[#1B4332] text-white text-xs font-bold px-2.5 py-1.5 rounded-full cursor-pointer">${word} <span class="text-[10px] bg-[#2D6A4F] text-white w-3.5 h-3.5 rounded-full flex items-center justify-center ml-1">×</span></span>`).join('');
+        tagsContainer.innerHTML = window.state.selectedWords.map(word =>
+          `<span onclick="selectWord('${word}')" class="inline-flex items-center space-x-1 bg-[#1B4332] text-white text-xs font-bold px-2.5 py-1.5 rounded-full cursor-pointer">${word} <span class="text-[10px] bg-[#2D6A4F] text-white w-3.5 h-3.5 rounded-full flex items-center justify-center ml-1">×</span></span>`
+        ).join('');
       } else { tagsContainer.classList.add('hidden'); }
 
       const inputsContainer = document.getElementById('definition-inputs-container');
       const placeholder = document.getElementById('definition-placeholders');
 
       if (window.state.selectedWords.length > 0) {
-        placeholder.classList.add('hidden'); inputsContainer.classList.remove('hidden');
+        placeholder.classList.add('hidden');
+        inputsContainer.classList.remove('hidden');
         inputsContainer.innerHTML = [1, 2, 3].map(num => {
-          const word = window.state.selectedWords[num - 1]; if (!word) return '';
+          const word = window.state.selectedWords[num - 1];
+          if (!word) return '';
+          const q2val = (window.state.definitions[num]?.reason || '').trim();
+          const q3LabelText = q2val
+            ? `Q3の質問はQ2入力後に更新されます`
+            : `Q2にお答えいただくと、あなただけの質問が完成します。`;
           return `
-            <div class='bg-[#FAFBF9] rounded-2xl border border-emerald-100 p-4 space-y-4 shadow-sm'>
-              <span class='text-xs bg-[#1B4332] text-[#D4AF37] font-black px-3 py-1 rounded-lg'>理念 ${num} ： 【 ${word} 】</span>
-              <div class='space-y-1.5'>
-                <label class='block text-xs font-bold text-gray-700'><span class='text-[#1B4332] font-extrabold'>Q1. </span>あなたにとって、あなたの人生にとってその言葉はどんな意味があるのか。教えてください。</label>
-                <textarea id="def-meaning-input-${num}" rows="2" placeholder="例) 私にとって${word}とは、人生における喜びです。" oninput="updateDefinition(${num}, 'meaning', this.value)" class="w-full p-3 rounded-xl border border-gray-200 text-xs md:text-sm bg-white font-medium">${window.state.definitions[num]?.meaning || ''}</textarea>
+            <div class='bg-[#FAFBF9] rounded-2xl border border-emerald-100 p-4 space-y-5 shadow-sm'>
+              <div class='flex items-center space-x-2'>
+                <span class='text-xs bg-[#1B4332] text-[#D4AF37] font-black px-3 py-1 rounded-lg'>理念 ${num}</span>
+                <span class='text-base font-bold text-[#1B4332]'>【 ${word} 】</span>
               </div>
+
+              <!-- Q1 -->
               <div class='space-y-1.5'>
-                <label class='block text-xs font-bold text-gray-700'><span class='text-[#1B4332] font-extrabold'>Q2. </span>それはなぜですか？</label>
-                <textarea id="def-reason-input-${num}" rows="3" placeholder="例) 新しいことを学び、それを周りの人に還元したとき、喜んでくれる姿を見ると、生きて良かったと満足感を得ることができるからです。" oninput="updateDefinition(${num}, 'reason', this.value)" class="w-full p-3 rounded-xl border border-gray-200 text-xs md:text-sm bg-white font-medium">${window.state.definitions[num]?.reason || ''}</textarea>
+                <label class='block text-xs font-bold text-gray-700'>
+                  <span class='text-[#1B4332] font-extrabold'>Q1. </span>「${word}」という言葉は、あなたの人生においてどんな意味がありますか？
+                </label>
+                <textarea id="def-meaning-input-${num}" rows="2"
+                  placeholder="例) 私にとって「${word}」とは、人生における喜びです。"
+                  oninput="updateDefinition(${num}, 'meaning', this.value)"
+                  class="w-full p-3 rounded-xl border border-gray-200 text-sm bg-white font-medium focus:outline-none focus:ring-2 focus:ring-[#1B4332]">${window.state.definitions[num]?.meaning || ''}</textarea>
+              </div>
+
+              <!-- Q2 -->
+              <div class='space-y-1.5'>
+                <label class='block text-xs font-bold text-gray-700'>
+                  <span class='text-[#1B4332] font-extrabold'>Q2. </span>なぜそう思うのですか？
+                </label>
+                <textarea id="def-reason-input-${num}" rows="3"
+                  placeholder="例) 新しいことを学び、それを周りの人に還元したとき、喜んでくれる姿を見ると、生きて良かったと満足感を得ることができるからです。"
+                  oninput="updateDefinition(${num}, 'reason', this.value); updateQ3Label(${num});"
+                  class="w-full p-3 rounded-xl border border-gray-200 text-sm bg-white font-medium focus:outline-none focus:ring-2 focus:ring-[#1B4332]">${window.state.definitions[num]?.reason || ''}</textarea>
+              </div>
+
+              <!-- Q3（Q2の回答が質問文に自動反映） -->
+              <div class='q3-box rounded-xl p-4 space-y-2'>
+                <label id="q3-label-${num}" class='block text-xs font-bold text-gray-700 leading-relaxed'>
+                  <span class='text-[#1B4332] font-extrabold'>Q3. </span>${q3LabelText}
+                </label>
+                <textarea id="def-episode-input-${num}" rows="4"
+                  placeholder="思い出される出来事を、自由にお書きください。"
+                  oninput="updateDefinition(${num}, 'episode', this.value)"
+                  class="w-full p-3 rounded-xl border border-amber-200 text-sm bg-white font-medium focus:outline-none focus:ring-2 focus:ring-[#D4AF37]">${window.state.definitions[num]?.episode || ''}</textarea>
               </div>
             </div>`;
         }).join('');
-      } else { placeholder.classList.remove('hidden'); inputsContainer.classList.add('hidden'); }
+
+        // 読み込んだデータがある場合はQ3ラベルをすぐに更新
+        [1, 2, 3].forEach(num => updateQ3Label(num));
+
+      } else {
+        placeholder.classList.remove('hidden');
+        inputsContainer.classList.add('hidden');
+      }
     }
 
     function updateDefinition(num, key, val) { window.state.definitions[num][key] = val; }
@@ -363,26 +426,46 @@
       const code = window.state.patientCode;
       if (!patientName) { showToast("お名前をご入力ください。", "warning"); return; }
 
-      const docData = { patientCode: code, patientName: patientName, selectedWords: window.state.selectedWords, definitions: window.state.definitions, status: isSubmit ? 'submitted' : 'draft', updatedAt: new Date().toISOString() };
+      const docData = {
+        patientCode: code,
+        patientName: patientName,
+        selectedWords: window.state.selectedWords,
+        definitions: window.state.definitions,
+        status: isSubmit ? 'submitted' : 'draft',
+        updatedAt: new Date().toISOString()
+      };
       localStorage.setItem(`patient_work_${code}`, JSON.stringify(docData));
 
       if (window.state.isFirebaseConnected && window.state.db) {
         try {
           const { doc, setDoc } = await import("https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js");
-          await setDoc(doc(window.state.db, 'artifacts', window.state.appId, 'public', 'data', 'worksheets', code), docData, { merge: true });
+          await setDoc(
+            doc(window.state.db, 'artifacts', window.state.appId, 'public', 'data', 'worksheets', code),
+            docData, { merge: true }
+          );
         } catch (err) { showToast("通信エラー。ローカルに保存されました。", "error"); return; }
       }
 
       if (isSubmit) {
-        document.getElementById('editor-section').classList.add('hidden'); document.getElementById('submitted-section').classList.remove('hidden');
-        document.getElementById('submitted-patient-code').innerText = code; document.getElementById('summary-name').innerText = patientName;
+        document.getElementById('editor-section').classList.add('hidden');
+        document.getElementById('submitted-section').classList.remove('hidden');
+        document.getElementById('submitted-patient-code').innerText = code;
+        document.getElementById('summary-name').innerText = patientName;
         document.getElementById('summary-code-report').innerText = code;
-        document.getElementById('summary-words').innerHTML = window.state.selectedWords.map(w => `<span class="bg-emerald-50 text-emerald-900 border border-emerald-100 px-1.5 py-0.5 rounded text-[10px] font-bold">${w}</span>`).join('');
-        showToast("宿題を提出しました！", "success");
-      } else { showToast("一時保存しました！", "success"); }
+        document.getElementById('summary-words').innerHTML = window.state.selectedWords.map(w =>
+          `<span class="bg-emerald-50 text-emerald-900 border border-emerald-100 px-1.5 py-0.5 rounded text-[10px] font-bold">${w}</span>`
+        ).join('');
+        showToast("宿題を提出しました！ありがとうございます。", "success");
+      } else {
+        showToast("一時保存しました！", "success");
+      }
     }
 
-    function editAgain() { document.getElementById('submitted-section').classList.add('hidden'); document.getElementById('editor-section').classList.remove('hidden'); updateSelectionUI(); }
+    function editAgain() {
+      document.getElementById('submitted-section').classList.add('hidden');
+      document.getElementById('editor-section').classList.remove('hidden');
+      updateSelectionUI();
+    }
   </script>
 </body>
 </html>
