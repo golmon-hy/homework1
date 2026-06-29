@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>理念・生き方ワークシート</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family:'Noto Sans JP',sans-serif; background:#F7F5EF; color:#2B2B28; }
-    .serif { font-family:'Noto Serif JP',serif; }
-    [data-screen] { display:none; }
-    [data-screen].active { display:block; }
-    .word-btn { transition:all .18s; }
-    textarea { font-family:'Noto Sans JP',sans-serif; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>わたしの羅針盤 ｜ 坂戸整体院</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body{font-family:'Noto Sans JP',sans-serif;background:#F7F5EF;color:#2B2B28;}
+  .serif{font-family:'Noto Serif JP',serif;}
+  [data-screen]{display:none;}
+  [data-screen].active{display:block;}
+  textarea{font-family:'Noto Sans JP',sans-serif;resize:none;}
+  .fade-in{animation:fi .4s ease;}
+  @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
 </head>
 <body class="min-h-screen pb-24">
 
 <!-- HEADER -->
 <header class="sticky top-0 z-20 bg-[#1B4332] border-b-2 border-[#D4AF37] shadow-md">
   <div class="max-w-xl mx-auto px-4 h-14 flex items-center justify-between gap-2">
-    <div>
+    <div class="min-w-0">
       <p class="text-[#D4AF37] text-[9px] font-bold tracking-widest">SAKADO SEITAI-IN</p>
-      <h1 id="header-title" class="serif text-white font-bold text-sm leading-tight">理念・生き方ワークシート</h1>
+      <h1 class="serif text-white font-bold text-sm leading-tight truncate">わたしの羅針盤</h1>
     </div>
     <div class="flex items-center gap-2 shrink-0">
       <div id="badge-conn" class="hidden text-[9px] bg-[#2D6A4F] text-[#E8F5E9] border border-[#D4AF37]/20 px-2 py-1 rounded-full font-bold">接続済み</div>
-      <button onclick="toggleFont()" class="text-white text-[10px] border border-white/30 px-2 py-1.5 rounded-lg font-bold">
-        文字 <span id="font-lbl">大</span>
-      </button>
+      <button onclick="toggleFont()" class="text-white text-[10px] border border-white/30 px-2 py-1.5 rounded-lg font-bold">文字 <span id="font-lbl">大</span></button>
     </div>
   </div>
 </header>
@@ -39,12 +38,11 @@
 </div>
 
 <main class="max-w-xl mx-auto px-4 py-5 space-y-4">
-
 <!-- ===== LOGIN ===== -->
 <div data-screen="login" class="active space-y-4">
   <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-6">
-    <p class="serif text-[#1B4332] text-xl font-bold leading-relaxed">大切にしたい価値観を、<br>ことばにしてみるワークです。</p>
-    <p class="mt-3 text-[#6B6B64] text-sm leading-loose">ご自宅で、ご自分のペースで取り組む宿題です。途中で保存して、後から続きを書くこともできます。</p>
+    <p class="serif text-[#1B4332] text-xl font-bold leading-relaxed">いそがしい毎日の中で、<br>少しだけ立ち止まって、<br>自分の心をことばにする時間です。</p>
+    <p class="mt-3 text-[#6B6B64] text-sm leading-loose">うまく書こうとしなくて大丈夫です。思い浮かんだことを、そのまま書いてみてください。途中で保存して、後から続けられます。</p>
   </div>
   <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-6 space-y-4">
     <h2 class="serif text-[#1B4332] text-lg font-bold">ワークシートを開く</h2>
@@ -53,140 +51,111 @@
       <b>誕生日4桁 ＋ 電話番号下4桁（計8桁）</b><br>
       例）10月12日生まれ・電話下4桁が5678 → <b>10125678</b>
     </div>
-    <input type="tel" id="login-input" maxlength="8" placeholder="8桁の数字"
-      onkeydown="if(event.key==='Enter')handleLogin()"
+    <input type="tel" id="login-input" maxlength="8" placeholder="8桁の数字" onkeydown="if(event.key==='Enter')handleLogin()"
       class="w-full border-2 border-[#DDD9CE] rounded-2xl text-center text-2xl font-bold text-[#1B4332] py-4 tracking-widest focus:outline-none focus:border-[#1B4332]"/>
     <button onclick="handleLogin()" class="w-full bg-[#1B4332] text-white font-bold py-4 rounded-2xl text-base shadow active:scale-95 transition-transform">ワークシートを開く</button>
-  </div>
-  <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5">
-    <h3 class="serif text-[#1B4332] font-bold mb-3">ワークの進め方</h3>
-    <ol class="space-y-3 text-sm text-[#2B2B28] leading-relaxed">
-      <li class="flex gap-3"><span class="shrink-0 w-7 h-7 bg-[#1B4332] text-[#D4AF37] rounded-full flex items-center justify-center font-bold text-xs">1</span><span>お名前をフルネームで記入します。</span></li>
-      <li class="flex gap-3"><span class="shrink-0 w-7 h-7 bg-[#1B4332] text-[#D4AF37] rounded-full flex items-center justify-center font-bold text-xs">2</span><span>52の言葉から、あなたの理念となる言葉を<b>直感で3つ</b>選びます。</span></li>
-      <li class="flex gap-3"><span class="shrink-0 w-7 h-7 bg-[#1B4332] text-[#D4AF37] rounded-full flex items-center justify-center font-bold text-xs">3</span><span>選んだ言葉ごとに<b>3つの質問</b>にお答えください。</span></li>
-      <li class="flex gap-3"><span class="shrink-0 w-7 h-7 bg-[#1B4332] text-[#D4AF37] rounded-full flex items-center justify-center font-bold text-xs">4</span><span>「院へ提出する」を押して完了です。</span></li>
-    </ol>
   </div>
   <div class="text-center"><button onclick="goAdminLogin()" class="text-[#6B6B64] text-xs underline">院長・スタッフの方はこちら（管理画面）</button></div>
 </div>
 
-<!-- ===== STEP: NAME ===== -->
-<div data-screen="step-name" class="space-y-4">
-  <div id="pb-name"></div>
+<!-- ===== NAME REGISTRATION（お名前登録） ===== -->
+<div data-screen="register" class="space-y-4">
   <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-6">
-    <h2 class="serif text-[#1B4332] text-xl font-bold mb-2">あなたのお名前を教えてください</h2>
-    <p class="text-sm text-[#6B6B64] leading-relaxed mb-4">先生があなたのワークシートを確認するために必要です。フルネームでご記入ください。</p>
-    <input type="text" id="name-input" placeholder="例）坂戸 太郎"
-      class="w-full border-2 border-[#DDD9CE] rounded-2xl py-4 px-4 text-lg font-bold focus:outline-none focus:border-[#1B4332]"/>
-  </div>
-  <div id="as-name" class="text-center text-xs text-[#6B6B64]"></div>
-  <div class="flex gap-3">
-    <button onclick="handleLogout()" class="flex-1 border-2 border-[#DDD9CE] text-[#6B6B64] font-bold py-4 rounded-2xl active:scale-95 transition-transform">← 戻る</button>
-    <button onclick="nextFromName()" class="flex-[2] bg-[#1B4332] text-white font-bold py-4 rounded-2xl shadow active:scale-95 transition-transform">次へ進む →</button>
-  </div>
-  <div class="text-center"><button onclick="manualSave()" class="text-[#1B4332] text-xs underline">いますぐ保存する</button></div>
-</div>
-
-<!-- ===== STEP: WORDS ===== -->
-<div data-screen="step-words" class="space-y-4">
-  <div id="pb-words"></div>
-  <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5">
-    <h2 class="serif text-[#1B4332] text-xl font-bold mb-2">生き方の理念となる言葉を【3つ】選ぶ</h2>
-    <p class="text-sm text-[#6B6B64] leading-relaxed mb-3">深く考えすぎず、<b class="text-[#2B2B28]">直感でピンときた言葉</b>をタップしてください。</p>
-    <div class="flex items-center justify-between mb-3">
-      <p id="word-count" class="font-bold text-[#1B4332] text-sm">選択数：0 / 3</p>
-      <span id="word-done-badge" class="hidden text-xs font-bold px-3 py-1 rounded-full bg-[#E7F0EA] text-[#1B4332]">3つ選べました ✓</span>
+    <div class="text-center mb-4">
+      <div class="mx-auto w-14 h-14 bg-[#E7F0EA] rounded-full flex items-center justify-center text-2xl mb-2">🖊️</div>
+      <h2 class="serif text-[#1B4332] text-xl font-bold">お名前を教えてください</h2>
     </div>
-    <div id="words-grid" class="grid grid-cols-3 gap-2"></div>
+    <p class="text-sm text-[#6B6B64] leading-loose mb-4">先生があなたのワークを確認するために必要です。<b class="text-[#2B2B28]">フルネーム</b>でご記入ください。一度登録すれば、次回からは入力不要です。</p>
+    <input type="text" id="reg-name" placeholder="例）坂戸 太郎"
+      onkeydown="if(event.key==='Enter')saveName()"
+      class="w-full border-2 border-[#DDD9CE] rounded-2xl py-4 px-4 text-lg font-bold text-center focus:outline-none focus:border-[#1B4332]"/>
+    <button onclick="saveName()" class="w-full mt-4 bg-[#1B4332] text-white font-bold py-4 rounded-2xl text-base shadow active:scale-95 transition-transform">登録して始める</button>
   </div>
-  <div id="as-words" class="text-center text-xs text-[#6B6B64]"></div>
+  <div class="text-center"><button onclick="handleLogout()" class="text-[#6B6B64] text-xs underline">← ログイン画面へ戻る</button></div>
+</div>
+
+<!-- ===== HUB（ステップ選択） ===== -->
+<div data-screen="hub" class="space-y-4">
+  <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5">
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-[#6B6B64] text-xs">ようこそ</p>
+        <p class="serif text-[#1B4332] text-xl font-bold"><span id="hub-name"></span> さん <button onclick="editName()" class="align-middle text-[#6B6B64] text-xs underline font-normal ml-1">変更</button></p>
+      </div>
+      <button onclick="handleLogout()" class="text-xs text-[#6B6B64] underline">閉じる</button>
+    </div>
+    <p class="mt-2 text-sm text-[#6B6B64] leading-loose">4つのワークを、<b class="text-[#2B2B28]">①から順番に</b>進めていきましょう。あせらず、ご自分のペースで大丈夫です。</p>
+  </div>
+
+  <div id="hub-steps" class="space-y-3"></div>
+
+  <!-- まとめページへ -->
+  <button onclick="openSummary()" class="w-full bg-gradient-to-br from-[#1B4332] to-[#2D6A4F] text-white rounded-3xl shadow-lg p-5 text-left active:scale-95 transition-transform">
+    <div class="flex items-center gap-3">
+      <div class="w-11 h-11 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37] flex items-center justify-center text-xl shrink-0">🧭</div>
+      <div>
+        <p class="serif font-bold text-lg">わたしの羅針盤</p>
+        <p class="text-white/70 text-xs mt-0.5">これまで書いたすべてを、一枚で見渡せます</p>
+      </div>
+    </div>
+  </button>
+</div>
+<!-- ===== GENERIC WORK SCREEN（全ステップ共通の器） ===== -->
+<div data-screen="work" class="space-y-4">
+  <div id="work-pb"></div>
+
+  <!-- イントロカード（各ステップの冒頭説明） -->
+  <div id="work-intro" class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5"></div>
+
+  <!-- 質問本体 -->
+  <div id="work-body" class="space-y-4"></div>
+
+  <div id="work-as" class="text-center text-xs text-[#6B6B64]"></div>
   <div class="flex gap-3">
-    <button onclick="goScreen('step-name')" class="flex-1 border-2 border-[#DDD9CE] text-[#6B6B64] font-bold py-4 rounded-2xl active:scale-95 transition-transform">← 戻る</button>
-    <button onclick="nextFromWords()" class="flex-[2] bg-[#1B4332] text-white font-bold py-4 rounded-2xl shadow active:scale-95 transition-transform">次へ進む →</button>
+    <button id="work-back" class="flex-1 border-2 border-[#DDD9CE] text-[#6B6B64] font-bold py-4 rounded-2xl active:scale-95 transition-transform">← 戻る</button>
+    <button id="work-next" class="flex-[2] bg-[#1B4332] text-white font-bold py-4 rounded-2xl shadow active:scale-95 transition-transform">次へ進む →</button>
   </div>
   <div class="text-center"><button onclick="manualSave()" class="text-[#1B4332] text-xs underline">いますぐ保存する</button></div>
 </div>
 
-<!-- ===== STEP: WORD QUESTIONS ===== -->
-<div data-screen="step-word-q" class="space-y-4">
-  <div id="pb-wq"></div>
-  <div id="word-badge" class="text-center py-6 bg-[#1B4332] rounded-3xl shadow-lg">
-    <p class="text-white/60 text-xs tracking-widest mb-1">あなたが選んだ言葉</p>
-    <p id="wq-word" class="serif text-[#D4AF37] text-4xl font-bold tracking-wide"></p>
-  </div>
-
-  <!-- Q1 -->
-  <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5 space-y-3">
-    <p class="font-bold text-sm">
-      <span class="bg-[#1B4332] text-[#D4AF37] text-xs px-2 py-0.5 rounded-lg mr-2">Q1</span>
-      <span id="q1-lbl"></span>
-    </p>
-    <textarea id="q1-in" rows="3" placeholder="思いのままにお書きください。" oninput="saveQ('q1')"
-      class="w-full border-2 border-[#DDD9CE] rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#1B4332] resize-none"></textarea>
-  </div>
-
-  <!-- Q2 -->
-  <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5 space-y-3">
-    <p class="font-bold text-sm">
-      <span class="bg-[#1B4332] text-[#D4AF37] text-xs px-2 py-0.5 rounded-lg mr-2">Q2</span>
-      なぜそう思うのですか？
-    </p>
-    <textarea id="q2-in" rows="4" placeholder="思いのままにお書きください。" oninput="saveQ('q2');updateQ3()"
-      class="w-full border-2 border-[#DDD9CE] rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#1B4332] resize-none"></textarea>
-  </div>
-
-  <!-- Q3 -->
-  <div class="bg-white rounded-3xl border-l-4 border-[#D4AF37] border border-[#DDD9CE] shadow p-5 space-y-3">
-    <p id="q3-lbl" class="font-bold text-sm leading-loose">
-      <span class="bg-[#D4AF37] text-white text-xs px-2 py-0.5 rounded-lg mr-2">Q3</span>
-    </p>
-    <div id="q3-preview" class="hidden bg-[#FFFBEA] border border-[#D4AF37] rounded-xl px-4 py-3 text-sm text-[#7A5C1E] leading-relaxed"></div>
-    <textarea id="q3-in" rows="5" placeholder="思い出される出来事を、自由にお書きください。" oninput="saveQ('q3')"
-      class="w-full border-2 border-amber-200 rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#D4AF37] resize-none"></textarea>
-  </div>
-
-  <div id="as-wq" class="text-center text-xs text-[#6B6B64]"></div>
-  <div class="flex gap-3">
-    <button onclick="prevWordQ()" class="flex-1 border-2 border-[#DDD9CE] text-[#6B6B64] font-bold py-4 rounded-2xl active:scale-95 transition-transform">← 戻る</button>
-    <button onclick="nextWordQ()" class="flex-[2] bg-[#1B4332] text-white font-bold py-4 rounded-2xl shadow active:scale-95 transition-transform">次へ進む →</button>
-  </div>
-  <div class="text-center"><button onclick="manualSave()" class="text-[#1B4332] text-xs underline">いますぐ保存する</button></div>
-</div>
-
-<!-- ===== STEP: REVIEW ===== -->
-<div data-screen="step-review" class="space-y-4">
-  <div id="pb-review"></div>
-  <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-6">
-    <h2 class="serif text-[#1B4332] text-xl font-bold mb-2">回答の確認</h2>
-    <p class="text-sm text-[#6B6B64] leading-relaxed">内容をご確認のうえ「院へ提出する」を押してください。修正したい場合は各カードの「修正する」ボタンからお戻りください。</p>
-    <div id="review-missing" class="hidden mt-3 bg-[#FBEFEC] text-[#B4503E] text-sm rounded-xl p-3 leading-relaxed"></div>
-    <div class="mt-3 text-sm"><span class="text-[#6B6B64]">お名前：</span><b id="rv-name"></b></div>
-  </div>
-  <div id="rv-cards" class="space-y-4"></div>
-  <div id="as-rv" class="text-center text-xs text-[#6B6B64]"></div>
-  <div class="flex gap-3">
-    <button onclick="loadWordQ(2)" class="flex-1 border-2 border-[#DDD9CE] text-[#6B6B64] font-bold py-4 rounded-2xl active:scale-95 transition-transform">← 戻る</button>
-    <button onclick="handleSubmit()" class="flex-[2] bg-[#B8922A] text-white font-bold py-4 rounded-2xl shadow active:scale-95 transition-transform">院へ提出する</button>
-  </div>
-</div>
-
-<!-- ===== DONE ===== -->
-<div data-screen="done" class="space-y-4">
+<!-- ===== STEP COMPLETE ===== -->
+<div data-screen="step-done" class="space-y-4">
   <div class="bg-white rounded-3xl border-t-4 border-[#D4AF37] border border-[#DDD9CE] shadow p-6 text-center">
     <div class="mx-auto w-16 h-16 bg-[#E7F0EA] rounded-full flex items-center justify-center text-3xl">✓</div>
-    <h2 class="serif text-[#1B4332] text-2xl font-bold mt-3">提出が完了しました</h2>
-    <p class="text-sm text-[#6B6B64] mt-2 leading-loose">じっくり向き合っていただき、ありがとうございました。</p>
+    <h2 class="serif text-[#1B4332] text-2xl font-bold mt-3"><span id="sd-title"></span> 完了</h2>
+    <p class="text-sm text-[#6B6B64] mt-2 leading-loose">じっくり向き合っていただき、ありがとうございました。<br>ここまでの内容は自動で保存されています。</p>
   </div>
-  <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5 space-y-2 text-sm">
-    <p><span class="text-[#6B6B64]">お名前：</span><b id="dn-name"></b></p>
-    <p><span class="text-[#6B6B64]">暗証番号：</span><b id="dn-code" class="tracking-widest"></b></p>
-    <div class="flex flex-wrap items-center gap-1"><span class="text-[#6B6B64]">選んだ言葉：</span><span id="dn-words"></span></div>
+  <div id="sd-next-card"></div>
+  <button onclick="goHub()" class="w-full border-2 border-[#1B4332] text-[#1B4332] font-bold py-4 rounded-2xl active:scale-95 transition-transform">ステップ選択へ戻る</button>
+</div>
+
+<!-- ===== SUMMARY（わたしの羅針盤） ===== -->
+<div data-screen="summary" class="space-y-4">
+  <div class="bg-gradient-to-br from-[#1B4332] to-[#2D6A4F] text-white rounded-3xl shadow-lg p-6 text-center">
+    <div class="text-3xl mb-1">🧭</div>
+    <h2 class="serif text-2xl font-bold">わたしの羅針盤</h2>
+    <p id="sum-name" class="text-white/80 text-sm mt-1"></p>
+    <p class="text-white/70 text-xs mt-3 leading-relaxed">迷ったとき、つかれたとき、ここを開いてください。<br>あなたが大切にしたいものが、ここに記されています。</p>
+  </div>
+  <div id="sum-body" class="space-y-4"></div>
+  <div class="flex gap-3">
+    <button onclick="goHub()" class="flex-1 border-2 border-[#DDD9CE] text-[#6B6B64] font-bold py-4 rounded-2xl active:scale-95 transition-transform">← 戻る</button>
+    <button onclick="submitAll()" class="flex-[2] bg-[#B8922A] text-white font-bold py-4 rounded-2xl shadow active:scale-95 transition-transform">院へ提出する</button>
+  </div>
+</div>
+
+<!-- ===== DONE (全提出) ===== -->
+<div data-screen="alldone" class="space-y-4">
+  <div class="bg-white rounded-3xl border-t-4 border-[#D4AF37] border border-[#DDD9CE] shadow p-6 text-center">
+    <div class="mx-auto w-16 h-16 bg-[#E7F0EA] rounded-full flex items-center justify-center text-3xl">🧭</div>
+    <h2 class="serif text-[#1B4332] text-2xl font-bold mt-3">院へ提出しました</h2>
+    <p class="text-sm text-[#6B6B64] mt-2 leading-loose">ここまで取り組んでいただき、ありがとうございました。</p>
   </div>
   <div class="bg-[#F6EFDD] rounded-3xl border border-[#DDD9CE] p-5 text-sm leading-loose">
     <b>先生への報告方法</b><br>
-    公式LINEなどで「宿題が終わりました！暗証番号は <b id="dn-code2"></b> です」とメッセージを送ってください。
+    公式LINEなどで「ワークが終わりました！暗証番号は <b id="ad-code"></b> です」とメッセージを送ってください。
   </div>
-  <button onclick="editAgain()" class="w-full border-2 border-[#1B4332] text-[#1B4332] font-bold py-4 rounded-2xl active:scale-95 transition-transform">回答を修正する</button>
+  <button onclick="goHub()" class="w-full border-2 border-[#1B4332] text-[#1B4332] font-bold py-4 rounded-2xl active:scale-95 transition-transform">ステップ選択へ戻る</button>
   <div class="text-center"><button onclick="handleLogout()" class="text-[#6B6B64] text-xs underline">ログイン画面へ戻る</button></div>
 </div>
 
@@ -195,18 +164,15 @@
   <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-6 space-y-4">
     <h2 class="serif text-[#1B4332] text-xl font-bold">管理者 認証ログイン</h2>
     <p class="text-sm text-[#6B6B64] leading-relaxed">患者様のプライバシー保護のため、管理用暗証番号を入力してください。</p>
-    <input type="password" id="adm-pass" placeholder="管理用暗証番号（8桁）"
-      onkeydown="if(event.key==='Enter')handleAdminLogin()"
+    <input type="password" id="adm-pass" placeholder="管理用暗証番号" onkeydown="if(event.key==='Enter')handleAdminLogin()"
       class="w-full border-2 border-[#DDD9CE] rounded-2xl text-center text-xl font-bold py-4 tracking-widest focus:outline-none focus:border-[#1B4332]"/>
     <button onclick="handleAdminLogin()" class="w-full bg-[#1B4332] text-white font-bold py-4 rounded-2xl shadow active:scale-95 transition-transform">認証して管理画面を開く</button>
   </div>
-  <div class="text-center"><button onclick="goScreen('login')" class="text-[#6B6B64] text-xs underline">← 患者様用ワークシートに戻る</button></div>
+  <div class="text-center"><button onclick="goScreen('login')" class="text-[#6B6B64] text-xs underline">← 患者様用に戻る</button></div>
 </div>
 
-<!-- ===== ADMIN DASHBOARD ===== -->
+<!-- ===== ADMIN DASH ===== -->
 <div data-screen="admin-dash" class="space-y-4">
-
-  <!-- 詳細パネル -->
   <div id="adm-detail" class="hidden space-y-4">
     <div class="flex items-center justify-between flex-wrap gap-2">
       <button onclick="closeDetail()" class="border border-[#DDD9CE] text-[#6B6B64] text-sm font-bold px-4 py-2 rounded-xl active:scale-95 transition-transform">← 一覧に戻る</button>
@@ -216,22 +182,16 @@
     <div id="adm-detail-ans" class="space-y-4"></div>
     <div class="bg-[#FFFDF5] border-l-4 border-[#D4AF37] border border-[#DDD9CE] rounded-3xl p-5 space-y-3">
       <p class="font-bold text-[#1B4332]">先生専用 カルテメモ</p>
-      <p class="text-[#6B6B64] text-xs">施術中のアプローチ・変化を記録（患者様には表示されません）</p>
-      <textarea id="adm-memo" rows="7" placeholder="例）「成長」への意味づけが仕事中心。次回、家族との関係についても聞いてみる。"
-        class="w-full border-2 border-[#DDD9CE] rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#D4AF37] resize-none"></textarea>
+      <p class="text-[#6B6B64] text-xs">気づいた変化などを記録（患者様には表示されません）</p>
+      <textarea id="adm-memo" rows="6" class="w-full border-2 border-[#DDD9CE] rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#D4AF37]"></textarea>
       <p id="adm-memo-saved" class="text-xs text-[#6B6B64]"></p>
       <button onclick="saveAdminMemo()" class="w-full bg-[#1B4332] text-white font-bold py-3 rounded-xl active:scale-95 transition-transform">カルテメモを保存</button>
     </div>
   </div>
-
-  <!-- 一覧パネル -->
   <div id="adm-list-wrap" class="space-y-4">
     <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5">
       <div class="flex items-center justify-between flex-wrap gap-2 mb-3">
-        <div>
-          <h2 class="serif text-[#1B4332] text-lg font-bold">登録ワークシート一覧</h2>
-          <p id="adm-count" class="text-[#6B6B64] text-xs mt-1">読み込み中...</p>
-        </div>
+        <div><h2 class="serif text-[#1B4332] text-lg font-bold">登録ワークシート一覧</h2><p id="adm-count" class="text-[#6B6B64] text-xs mt-1">読み込み中...</p></div>
         <button onclick="loadAdminData()" class="border border-[#DDD9CE] text-[#6B6B64] text-xs font-bold px-3 py-2 rounded-xl">再読み込み</button>
       </div>
       <div class="flex gap-2 flex-wrap">
@@ -241,12 +201,11 @@
       </div>
     </div>
     <div id="adm-list" class="space-y-3"></div>
-    <div class="text-center"><button onclick="goScreen('login')" class="text-[#6B6B64] text-xs underline">← 患者様用ワークシートに戻る</button></div>
+    <div class="text-center"><button onclick="goScreen('login')" class="text-[#6B6B64] text-xs underline">← 患者様用に戻る</button></div>
   </div>
 </div>
 
 </main>
-
 <!-- Firebase Module -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
@@ -261,427 +220,756 @@
     messagingSenderId: "79507491035",
     appId: "1:79507491035:web:9f29d4c7f74ccbdc8b24fe"
   };
-
   const app = initializeApp(cfg);
   const auth = getAuth(app);
   const db = getFirestore(app);
   const APP_ID = 'seitai-work-app';
-  const wsCol = () => collection(db, 'artifacts', APP_ID, 'public', 'data', 'worksheets');
-  const wsDoc = (code) => doc(db, 'artifacts', APP_ID, 'public', 'data', 'worksheets', code);
+  const wsCol = () => collection(db,'artifacts',APP_ID,'public','data','worksheets');
+  const wsDoc = (c) => doc(db,'artifacts',APP_ID,'public','data','worksheets',c);
 
-  window._fb = { connected: false };
+  window._fb = { connected:false };
+  try { await signInAnonymously(auth); window._fb.connected=true; document.getElementById('badge-conn').classList.remove('hidden'); }
+  catch(e){ console.error('auth error',e); }
 
-  try {
-    await signInAnonymously(auth);
-    window._fb.connected = true;
-    document.getElementById('badge-conn').classList.remove('hidden');
-  } catch(e) { console.error('Firebase auth error:', e); }
-
-  window._fbSave = async (code, data) => {
-    if (!window._fb.connected) return false;
-    try { await setDoc(wsDoc(code), data, { merge: true }); return true; }
-    catch(e) { console.error(e); return false; }
-  };
-
-  window._fbLoad = async (code) => {
-    if (!window._fb.connected) return null;
-    try {
-      const snap = await getDoc(wsDoc(code));
-      return snap.exists() ? snap.data() : null;
-    } catch(e) { console.error(e); return null; }
-  };
-
-  window._fbLoadAll = async () => {
-    if (!window._fb.connected) return [];
-    try {
-      const snap = await getDocs(wsCol());
-      return snap.docs.map(d => d.data());
-    } catch(e) { console.error(e); return []; }
-  };
+  window._fbSave = async (c,d)=>{ if(!window._fb.connected) return false; try{ await setDoc(wsDoc(c),d,{merge:true}); return true;}catch(e){console.error(e);return false;} };
+  window._fbLoad = async (c)=>{ if(!window._fb.connected) return null; try{ const s=await getDoc(wsDoc(c)); return s.exists()?s.data():null;}catch(e){console.error(e);return null;} };
+  window._fbLoadAll = async ()=>{ if(!window._fb.connected) return []; try{ const s=await getDocs(wsCol()); return s.docs.map(d=>d.data());}catch(e){console.error(e);return[];} };
 </script>
-
-<!-- App Logic -->
 <script>
+/* =========================================================
+   わたしの羅針盤 ｜ 4ステップ統合ワークアプリ
+   ========================================================= */
+const ADMP = "20260525";
+const GR="#1B4332", GD="#D4AF37";
 const WORDS = ["愛","いたわり","援助","思いやり","感謝","完全","希望","勤勉","謙虚","献身","健全","向上心","公平","最善","正直","純粋","従順","実践","信仰","親切","栄誉","慎重","真剣","真理","信用","信頼","正義","成長","誠実","責任感","善良","尊敬","慎み","忠実","道徳","努力","忍耐","熱心","平安","平穏","平和","奉仕","誇り","真面目","約束","優しさ","安らぎ","勇気","喜び","礼儀正しい","卓越","上質"];
-const ADMP = "reiwa05121019";
-const GR = "#1B4332", GD = "#D4AF37";
-const STEP_LABELS = ["お名前","言葉えらび","言葉①","言葉②","言葉③","確認・提出"];
 
+/* ステップ定義 */
+const STEPS = [
+  { id:'step1', no:'①', title:'人生理念ワーク', icon:'🌱', desc:'大切にしたい価値観を、3つの言葉から見つけます。' },
+  { id:'step2', no:'②', title:'人生ビジョンワーク', icon:'🕊️', desc:'「どんな人でありたいか」を、未来から考えます。' },
+  { id:'step3', no:'③', title:'目標設定ワーク', icon:'🎯', desc:'5つの分野で、理想の状態と続けたいことを書きます。' },
+  { id:'step4', no:'④', title:'計画立案ワーク', icon:'🗓️', desc:'5つの分野ごとに、3ヶ月後の行動と1年後の目標を立てます。' },
+];
+
+/* 目標設定の5項目 */
+const GOAL_FIELDS = [
+  { key:'health', label:'健康', icon:'💪',
+    qualQ:'あなたにとって、理想の「健康」とはどんな状態ですか？　何ができていると「健康だな」と感じますか？',
+    qualEx:'例）1年間、大きな病気をしない／朝すっきり起きられる',
+    quantQ:'どんなことを実践していると、あなたはその目標を達成できたと感じられますか？',
+    quantEx:'例）月に1回ジムに行く／月に2回整体に通う' },
+  { key:'relation', label:'人間関係（家族・友人・仕事仲間）', icon:'🤝',
+    qualQ:'あなたにとって、理想の「人間関係」とはどんな状態ですか？',
+    qualEx:'例）家族と落ち着いて話し合える／信頼できる友人がいる',
+    quantQ:'どんなことを実践していると、あなたはその目標を達成できたと感じられますか？',
+    quantEx:'例）月に1回、家族全員で外食する／週1回、友人に連絡する' },
+  { key:'work', label:'仕事', icon:'💼',
+    qualQ:'あなたにとって、理想の「仕事」とはどんな状態ですか？',
+    qualEx:'例）やりがいを感じられる／無理なく続けられる',
+    quantQ:'どんなことを実践していると、あなたはその目標を達成できたと感じられますか？',
+    quantEx:'例）週に1回、新しいことを学ぶ時間をとる' },
+  { key:'money', label:'経済（時間とお金）', icon:'⏳',
+    qualQ:'あなたにとって、理想の「お金と時間の使い方」とはどんな状態ですか？',
+    qualEx:'例）お金の不安が少ない／自分の時間がとれる',
+    quantQ:'どんなことを実践していると、あなたはその目標を達成できたと感じられますか？',
+    quantEx:'例）毎月1万円貯金する／週に2時間、自分の時間をとる' },
+  { key:'hobby', label:'趣味・教養', icon:'🎨',
+    qualQ:'あなたにとって、理想の「趣味や学びの時間」とはどんな状態ですか？',
+    qualEx:'例）夢中になれることがある／心が豊かになる時間がある',
+    quantQ:'どんなことを実践していると、あなたはその目標を達成できたと感じられますか？',
+    quantEx:'例）月に2冊、本を読む／週2回、30分オンライン英会話をする' },
+];
+
+/* 状態 */
 const S = {
-  code:'', name:'', words:[], answers:{},
-  status:'draft', savedAt:null, dirty:false,
-  fontLarge:false, wordIdx:0,
+  code:'', name:'', status:'draft', savedAt:null, dirty:false, fontLarge:false,
+  data:{ step1:{words:[],answers:{}}, step2:{}, step3:{}, step4:{} },
+  cur:null,        // 現在のステップid
+  wIdx:0,          // ステップ内のページindex
   admPatients:[], admSort:'new', admSel:null
 };
+let autoTimer=null;
 
-let autoTimer = null;
-
-/* ---- Toast ---- */
-function toast(msg, type='info') {
-  const bg = type==='success'?GR: type==='error'?'#B4503E': type==='warning'?'#B8922A':'#4A4A44';
-  const inner = document.getElementById('toast-inner');
-  inner.style.background = bg; inner.textContent = msg;
-  const el = document.getElementById('toast'); el.classList.remove('hidden');
-  clearTimeout(toast._t); toast._t = setTimeout(()=>el.classList.add('hidden'), 3500);
+/* ---- 共通UI ---- */
+function toast(msg,type='info'){
+  const bg=type==='success'?GR:type==='error'?'#B4503E':type==='warning'?'#B8922A':'#4A4A44';
+  const i=document.getElementById('toast-inner'); i.style.background=bg; i.textContent=msg;
+  const e=document.getElementById('toast'); e.classList.remove('hidden');
+  clearTimeout(toast._t); toast._t=setTimeout(()=>e.classList.add('hidden'),3500);
 }
-
-/* ---- Screen ---- */
-function goScreen(id) {
+function goScreen(id){
   document.querySelectorAll('[data-screen]').forEach(s=>s.classList.remove('active'));
-  const el = document.querySelector(`[data-screen="${id}"]`);
-  if(el) el.classList.add('active');
-  window.scrollTo({top:0, behavior:'smooth'});
+  const el=document.querySelector(`[data-screen="${id}"]`); if(el){el.classList.add('active');el.classList.add('fade-in');}
+  window.scrollTo({top:0,behavior:'smooth'});
 }
+function toggleFont(){ S.fontLarge=!S.fontLarge; document.documentElement.style.fontSize=S.fontLarge?'19px':'16px'; document.getElementById('font-lbl').textContent=S.fontLarge?'標準':'大'; }
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function pad(n){return String(n).padStart(2,'0');}
+function fmtDate(iso){ if(!iso)return''; const d=new Date(iso); return `${d.getFullYear()}/${pad(d.getMonth()+1)}/${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`; }
 
-/* ---- Progress bar ---- */
-function pb(stepIdx) {
-  const segs = STEP_LABELS.map((_,i)=>`<div style="flex:1;height:8px;border-radius:99px;background:${i<stepIdx?GR:i===stepIdx?GD:'#DDD9CE'};transition:background .3s"></div>`).join('');
-  return `<div style="display:flex;gap:6px;margin-bottom:8px">${segs}</div><p style="color:#6B6B64;font-size:.8rem;font-weight:700">ステップ ${stepIdx+1} / ${STEP_LABELS.length}｜${STEP_LABELS[stepIdx]}</p>`;
-}
+/* ---- ログイン ---- */
+async function handleLogin(){
+  const code=document.getElementById('login-input').value.trim();
+  if(!/^\d{8}$/.test(code)){ toast("8桁の数字を入力してください。","warning"); return; }
+  S.code=code; S.name=''; S.status='draft'; S.savedAt=null;
+  S.data={ step1:{words:[],answers:{}}, step2:{}, step3:{}, step4:{} };
 
-/* ---- Font ---- */
-function toggleFont() {
-  S.fontLarge = !S.fontLarge;
-  document.documentElement.style.fontSize = S.fontLarge ? '19px' : '16px';
-  document.getElementById('font-lbl').textContent = S.fontLarge ? '標準' : '大';
-}
+  let d=null;
+  if(window._fb?.connected) d=await window._fbLoad(code);
+  if(!d){ const lk=localStorage.getItem(`pw_${code}`); if(lk) d=JSON.parse(lk); }
+  if(d) applyLoaded(d);
 
-/* ---- Login ---- */
-async function handleLogin() {
-  const code = document.getElementById('login-input').value.trim();
-  if(!/^\d{8}$/.test(code)) { toast("8桁の数字を入力してください。","warning"); return; }
-  S.code=code; S.name=''; S.words=[]; S.answers={}; S.status='draft'; S.savedAt=null;
+  startAuto();
+  if(d && S.name) toast(`おかえりなさい、${S.name}さん。`,"success");
 
-  let data = null;
-  if(window._fb?.connected) data = await window._fbLoad(code);
-  if(!data) { const lk=localStorage.getItem(`pw_${code}`); if(lk) data=JSON.parse(lk); }
-
-  if(data) {
-    S.name = data.name||data.patientName||'';
-    S.words = data.words||data.selectedWords||[];
-    // Handle both new (word-keyed) and old (number-keyed definitions) format
-    if(data.answers && typeof data.answers === 'object') {
-      S.answers = data.answers;
-    } else if(data.definitions) {
-      const d=data.definitions; const ws=S.words;
-      if(ws.length>0){
-        S.answers={};
-        [0,1,2].forEach(i=>{ if(ws[i]) S.answers[ws[i]]={q1:d[i+1]?.meaning||'',q2:d[i+1]?.reason||'',q3:d[i+1]?.episode||''}; });
-      }
-    }
-    S.status = data.status||'draft';
-    S.savedAt = data.updatedAt||null;
-    if(S.status==='submitted'){ showDone(); return; }
-    toast(`おかえりなさい${S.name?'、'+S.name+'さん':''}。続きから始められます。`,"success");
+  // 名前が未登録なら、まずお名前登録ページへ
+  if(!S.name || !S.name.trim()){
+    document.getElementById('reg-name').value='';
+    goScreen('register');
+    setTimeout(()=>document.getElementById('reg-name').focus(),300);
+    return;
   }
-
-  document.getElementById('name-input').value = S.name;
-  document.getElementById('pb-name').innerHTML = pb(0);
-  goScreen('step-name');
-  startAutoSave();
+  document.getElementById('hub-name').textContent=S.name;
+  buildHub();
+  goScreen('hub');
 }
 
-function handleLogout() {
-  S.code=''; S.name=''; S.words=[]; S.answers={}; S.status='draft'; S.savedAt=null; S.dirty=false;
+function editName(){
+  document.getElementById('reg-name').value=S.name||'';
+  goScreen('register');
+  setTimeout(()=>document.getElementById('reg-name').focus(),300);
+}
+
+/* お名前の登録 */
+async function saveName(){
+  const v=document.getElementById('reg-name').value.trim();
+  if(!v){ toast("お名前をご入力ください。","warning"); return; }
+  S.name=v; markDirty();
+  await persistData();
+  document.getElementById('hub-name').textContent=S.name;
+  buildHub();
+  goScreen('hub');
+  toast(`ようこそ、${S.name}さん。`,"success");
+}
+
+function applyLoaded(d){
+  S.name=d.name||d.patientName||'';
+  S.status=d.status||'draft';
+  S.savedAt=d.updatedAt||null;
+  S.adminMemo=d.adminMemo||''; S.memoUpdatedAt=d.memoUpdatedAt||null;
+  // step1: 新形式 or 旧形式(definitions)を吸収
+  const s1=d.data?.step1;
+  if(s1){ S.data.step1={words:s1.words||[],answers:s1.answers||{}}; }
+  else if(d.selectedWords||d.words||d.definitions){
+    const ws=d.words||d.selectedWords||[];
+    const ans={};
+    if(d.answers&&typeof d.answers==='object'&&!Array.isArray(d.answers)){ Object.assign(ans,d.answers); }
+    else if(d.definitions){ const df=d.definitions; ws.forEach((w,i)=>{ ans[w]={q1:df[i+1]?.meaning||df[i+1]?.q1||'',q2:df[i+1]?.reason||df[i+1]?.q2||'',q3:df[i+1]?.episode||df[i+1]?.q3||''}; }); }
+    S.data.step1={words:ws,answers:ans};
+  }
+  if(d.data?.step2) S.data.step2=d.data.step2;
+  if(d.data?.step3) S.data.step3=d.data.step3;
+  if(d.data?.step4) S.data.step4=d.data.step4;
+}
+
+function handleLogout(){
+  S.code='';S.name='';S.status='draft';S.savedAt=null;S.dirty=false;
+  S.data={ step1:{words:[],answers:{}}, step2:{}, step3:{}, step4:{} };
   document.getElementById('login-input').value='';
-  if(autoTimer){ clearInterval(autoTimer); autoTimer=null; }
+  if(autoTimer){clearInterval(autoTimer);autoTimer=null;}
   goScreen('login');
 }
 
-/* ---- Name ---- */
-function nextFromName() {
-  const v = document.getElementById('name-input').value.trim();
-  if(!v){ toast("お名前をご入力ください。","warning"); return; }
-  S.name=v; markDirty();
-  buildWordsGrid();
-  document.getElementById('pb-words').innerHTML = pb(1);
-  goScreen('step-words');
+/* ---- HUB ---- */
+function isStepDone(id){
+  const d=S.data[id];
+  if(id==='step1') return d.words?.length===3 && d.words.every(w=>d.answers[w]?.q1&&d.answers[w]?.q3);
+  if(id==='step2') return d.phrase&&d.why1&&d.why2&&d.summary;
+  if(id==='step3') return GOAL_FIELDS.every(f=>d[f.key]?.qual&&d[f.key]?.quant);
+  if(id==='step4') return GOAL_FIELDS.every(f=>(d[f.key]?.m3_item?.trim()||d[f.key]?.m3_action?.trim())&&(d[f.key]?.y1_item?.trim()||d[f.key]?.y1_action?.trim()));
+  return false;
+}
+function isStepStarted(id){
+  const d=S.data[id];
+  if(id==='step1') return (d.words?.length||0)>0;
+  if(id==='step2') return !!(d.phrase||d.why1||d.why2||d.summary);
+  if(id==='step3') return GOAL_FIELDS.some(f=>d[f.key]?.qual||d[f.key]?.quant);
+  if(id==='step4') return GOAL_FIELDS.some(f=>d[f.key]&&(d[f.key].m3_item||d[f.key].m3_action||d[f.key].y1_item||d[f.key].y1_action));
+  return false;
+}
+function firstIncompleteIndex(){
+  for(let i=0;i<STEPS.length;i++){ if(!isStepDone(STEPS[i].id)) return i; }
+  return STEPS.length-1;
 }
 
-/* ---- Words ---- */
-function buildWordsGrid() {
-  document.getElementById('words-grid').innerHTML = WORDS.map(w=>{
-    const on = S.words.includes(w);
-    return `<button class="word-btn" onclick="toggleWord('${w}')" style="padding:.8rem .2rem;border-radius:.75rem;font-size:1rem;font-weight:${on?700:600};background:${on?GR:'#fff'};color:${on?GD:'#2B2B28'};border:${on?`2px solid ${GR}`:'1.5px solid #DDD9CE'};box-shadow:${on?'0 3px 8px rgba(27,67,50,.25)':'none'};width:100%">${w}</button>`;
-  }).join('');
-  updateWordCount();
-}
-
-function toggleWord(w) {
-  const idx = S.words.indexOf(w);
-  if(idx>-1){ S.words.splice(idx,1); }
-  else {
-    if(S.words.length>=3){ toast("言葉は3つまで選べます。","warning"); return; }
-    S.words.push(w);
-  }
-  S.words.forEach(wd=>{ if(!S.answers[wd]) S.answers[wd]={q1:'',q2:'',q3:''}; });
-  markDirty(); buildWordsGrid();
-}
-
-function updateWordCount() {
-  document.getElementById('word-count').textContent = `選択数：${S.words.length} / 3`;
-  const done = document.getElementById('word-done-badge');
-  if(S.words.length===3) done.classList.remove('hidden'); else done.classList.add('hidden');
-}
-
-function nextFromWords() {
-  if(S.words.length!==3){ toast("言葉を3つ選んでください。","warning"); return; }
-  S.words.forEach(w=>{ if(!S.answers[w]) S.answers[w]={q1:'',q2:'',q3:''}; });
-  loadWordQ(0);
-}
-
-/* ---- Word Questions ---- */
-function loadWordQ(idx) {
-  S.wordIdx=idx;
-  const word=S.words[idx];
-  const a=S.answers[word]||{q1:'',q2:'',q3:''};
-  S.answers[word]=a;
-
-  document.getElementById('pb-wq').innerHTML = pb(idx+2);
-  document.getElementById('wq-word').textContent = word;
-  document.getElementById('q1-lbl').textContent = `「${word}」という言葉は、あなたの人生においてどんな意味がありますか？`;
-  document.getElementById('q1-in').value = a.q1;
-  document.getElementById('q2-in').value = a.q2;
-  document.getElementById('q3-in').value = a.q3;
-  updateQ3();
-  goScreen('step-word-q');
-}
-
-function saveQ(key) {
-  const word=S.words[S.wordIdx];
-  if(!S.answers[word]) S.answers[word]={q1:'',q2:'',q3:''};
-  S.answers[word][key]=document.getElementById(`${key}-in`).value;
-  markDirty();
-}
-
-function updateQ3() {
-  const word=S.words[S.wordIdx];
-  const q2=(document.getElementById('q2-in')?.value||'').trim();
-  const lbl=document.getElementById('q3-lbl');
-  const prev=document.getElementById('q3-preview');
-  const badge=`<span style="background:${GD};color:#fff;font-size:.7rem;padding:.1rem .6rem;border-radius:.5rem;margin-right:.5rem">Q3</span>`;
-  if(q2){
-    lbl.innerHTML=badge+`あなたが「${word}」というキーワードを選び、このように感じるようになった、人生の中でのエピソードや経験はどんなことでしたか？`;
-    prev.textContent=`「${q2}」`;
-    prev.classList.remove('hidden');
-  } else {
-    lbl.innerHTML=badge+`Q2にお答えいただくと、あなただけの質問が完成します。`;
-    prev.classList.add('hidden');
-  }
-}
-
-function prevWordQ() {
-  if(S.wordIdx===0){ document.getElementById('pb-words').innerHTML=pb(1); buildWordsGrid(); goScreen('step-words'); }
-  else loadWordQ(S.wordIdx-1);
-}
-
-function nextWordQ() {
-  if(S.wordIdx<2) loadWordQ(S.wordIdx+1);
-  else showReview();
-}
-
-/* ---- Review ---- */
-function showReview() {
-  document.getElementById('pb-review').innerHTML=pb(5);
-  document.getElementById('rv-name').textContent=S.name;
-
-  const missing=[];
-  if(!S.name.trim()) missing.push('お名前');
-  S.words.forEach(w=>{ const a=S.answers[w]||{}; if(!a.q1?.trim()||!a.q2?.trim()||!a.q3?.trim()) missing.push(`「${w}」の回答`); });
-  const md=document.getElementById('review-missing');
-  if(missing.length){ md.innerHTML=`<b>未記入の項目があります：</b>${missing.join('、')}<br>このまま提出もできますが、できるだけご記入をお願いします。`; md.classList.remove('hidden'); }
-  else md.classList.add('hidden');
-
-  document.getElementById('rv-cards').innerHTML=S.words.map((w,i)=>{
-    const a=S.answers[w]||{};
-    const qa=(k,lbl)=>`<div><p style="font-size:.75rem;font-weight:700;color:#2D6A4F">${lbl}</p><p style="margin-top:.25rem;font-size:.9rem;background:#F7F5EF;border-radius:.75rem;padding:.5rem .75rem;line-height:1.8;white-space:pre-wrap">${a[k]||'<span style="color:#B4503E">（未記入）</span>'}</p></div>`;
-    return `<div style="background:#fff;border-radius:1.5rem;border:1px solid #DDD9CE;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:1.25rem;display:flex;flex-direction:column;gap:.75rem">
-      <div style="display:flex;align-items:center;justify-content:space-between">
-        <p style="font-family:'Noto Serif JP',serif;font-size:1.2rem;font-weight:700;color:${GR}"><span style="color:${GD}">${i+1}.</span> ${w}</p>
-        <button onclick="loadWordQ(${i})" style="font-size:.75rem;border:1px solid #DDD9CE;color:#6B6B64;padding:.3rem .75rem;border-radius:.75rem;font-weight:700">修正する</button>
+function buildHub(){
+  const firstOpen=firstIncompleteIndex();
+  document.getElementById('hub-steps').innerHTML=STEPS.map((st,i)=>{
+    const done=isStepDone(st.id), started=isStepStarted(st.id);
+    // 順番固定：前のステップが完了するまでロック（ただし完了済みは常に開ける）
+    const locked = i>0 && !isStepDone(STEPS[i-1].id) && !done && !started;
+    const status = done?'完了':started?'入力中':locked?'ロック':'はじめる';
+    const stColor = done?GR:started?'#B8922A':locked?'#9C9C95':GR;
+    const bg = locked?'#F0EEE8':'#fff';
+    const click = locked?`onclick="toast('まず ${STEPS[i-1].no} を終えてから進みましょう。','warning')"`:`onclick="openStep('${st.id}')"`;
+    return `<button ${click} style="width:100%;text-align:left;background:${bg};border:1px solid #DDD9CE;border-radius:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.04);padding:1.1rem 1.2rem" class="active:scale-[.98] transition-transform">
+      <div style="display:flex;align-items:center;gap:.85rem">
+        <div style="width:46px;height:46px;border-radius:9999px;background:${done?'#E7F0EA':locked?'#E5E3DC':'#F4F7F5'};display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0">${locked?'🔒':st.icon}</div>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:.4rem">
+            <span style="color:${GR};font-weight:700">${st.no}</span>
+            <span class="serif" style="font-weight:700;font-size:1.05rem;color:${locked?'#9C9C95':'#2B2B28'}">${st.title}</span>
+          </div>
+          <p style="font-size:.78rem;color:#6B6B64;margin-top:.15rem;line-height:1.6">${st.desc}</p>
+        </div>
+        <span style="font-size:.7rem;font-weight:700;color:#fff;background:${stColor};padding:.25rem .6rem;border-radius:9999px;white-space:nowrap;flex-shrink:0">${status}</span>
       </div>
-      ${qa('q1','Q1. 人生における意味')}
-      ${qa('q2','Q2. なぜそう思うか')}
-      ${qa('q3','Q3. もとになった経験・エピソード')}
-    </div>`;
+    </button>`;
   }).join('');
+}
+function goHub(){ document.getElementById('hub-name').textContent=S.name||''; buildHub(); goScreen('hub'); }
 
-  goScreen('step-review');
+function openStep(id){
+  S.cur=id; S.wIdx=0;
+  if(id==='step1') renderStep1();
+  else if(id==='step2') renderStep2();
+  else if(id==='step3') renderStep3();
+  else if(id==='step4') renderStep4();
+  goScreen('work');   // ★ 実際にワーク画面へ切り替える
+}
+</script>
+<script>
+/* progress bar within a step */
+function workPB(stepNo, pageIdx, pageTotal, stepTitle){
+  const overall=STEPS.findIndex(s=>s.id===S.cur);
+  const dots=STEPS.map((_,i)=>`<div style="flex:1;height:6px;border-radius:99px;background:${i<overall?GR:i===overall?GD:'#DDD9CE'}"></div>`).join('');
+  let inner='';
+  if(pageTotal>1){
+    const segs=Array.from({length:pageTotal}).map((_,i)=>`<div style="flex:1;height:8px;border-radius:99px;background:${i<pageIdx?GR:i===pageIdx?GD:'#DDD9CE'}"></div>`).join('');
+    inner=`<div style="display:flex;gap:5px;margin-top:8px">${segs}</div>`;
+  }
+  return `<div><div style="display:flex;gap:5px">${dots}</div>${inner}<p style="color:#6B6B64;font-size:.78rem;font-weight:700;margin-top:6px">ステップ${stepNo}：${stepTitle}${pageTotal>1?`（${pageIdx+1}/${pageTotal}）`:''}</p></div>`;
+}
+function setNav(backFn, nextFn, nextLabel){
+  const b=document.getElementById('work-back'), n=document.getElementById('work-next');
+  b.onclick=backFn; n.onclick=nextFn; n.textContent=nextLabel||'次へ進む →';
+}
+function updateWorkAS(){ const t=S.savedAt?`自動保存済み ${fmtDate(S.savedAt)}`:''; const e=document.getElementById('work-as'); if(e)e.textContent=t; }
+
+/* ============ STEP1 人生理念ワーク ============ */
+function renderStep1(){
+  const d=S.data.step1;
+  // page 0: 言葉選び, page1-3: 各語Q1Q2Q3
+  if(S.wIdx===0){
+    document.getElementById('work-pb').innerHTML=workPB('①',0,4,'人生理念ワーク');
+    document.getElementById('work-intro').innerHTML=`<h2 class="serif text-[#1B4332] text-xl font-bold mb-2">大切にしたい言葉を3つ選ぶ</h2>
+      <p class="text-sm text-[#6B6B64] leading-loose">下の52の言葉から、あなたが「これは大事にしたいな」と<b class="text-[#2B2B28]">直感で感じた言葉</b>を3つ選んでタップしてください。正解はありません。</p>`;
+    document.getElementById('work-body').innerHTML=`
+      <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5">
+        <div class="flex items-center justify-between mb-3">
+          <p id="w-count" class="font-bold text-[#1B4332] text-sm">選択数：${d.words.length} / 3</p>
+          <span id="w-done" class="${d.words.length===3?'':'hidden'} text-xs font-bold px-3 py-1 rounded-full bg-[#E7F0EA] text-[#1B4332]">3つ選べました ✓</span>
+        </div>
+        <div id="w-grid" class="grid grid-cols-3 gap-2"></div>
+      </div>`;
+    buildWordGrid();
+    setNav(()=>goHub(), ()=>{ if(d.words.length!==3){toast('言葉を3つ選んでください。','warning');return;} d.words.forEach(w=>{if(!d.answers[w])d.answers[w]={q1:'',q2:'',q3:''};}); S.wIdx=1; renderStep1(); });
+  } else {
+    const i=S.wIdx-1, word=d.words[i]; const a=d.answers[word]||{q1:'',q2:'',q3:''}; d.answers[word]=a;
+    document.getElementById('work-pb').innerHTML=workPB('①',S.wIdx,4,'人生理念ワーク');
+    document.getElementById('work-intro').innerHTML=`<div class="text-center py-4 -m-1"><p class="text-[#6B6B64] text-xs tracking-widest mb-1">あなたが選んだ言葉 その${i+1}</p><p class="serif text-[#D4AF37] text-4xl font-bold" style="text-shadow:0 1px 0 rgba(0,0,0,.05)">${word}</p></div>`;
+    document.getElementById('work-intro').className="bg-[#1B4332] rounded-3xl border border-[#1B4332] shadow p-5";
+    document.getElementById('work-body').innerHTML=`
+      <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5 space-y-3">
+        <p class="font-bold text-sm"><span class="bg-[#1B4332] text-[#D4AF37] text-xs px-2 py-0.5 rounded-lg mr-2">Q1</span>「${word}」という言葉は、あなたの人生にとってどんな意味がありますか？</p>
+        <textarea id="s1q1" rows="3" placeholder="例）私にとって「${word}」とは、毎日を支えてくれる大切なものです。" class="w-full border-2 border-[#DDD9CE] rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#1B4332]">${esc(a.q1)}</textarea>
+      </div>
+      <div class="bg-white rounded-3xl border-l-4 border-[#D4AF37] border border-[#DDD9CE] shadow p-5 space-y-3">
+        <p id="s1q3lbl" class="font-bold text-sm leading-loose"></p>
+        <div id="s1q3prev" class="hidden bg-[#FFFBEA] border border-[#D4AF37] rounded-xl px-4 py-3 text-sm text-[#7A5C1E] leading-relaxed"></div>
+        <textarea id="s1q3" rows="5" placeholder="思い出される出来事を、自由にお書きください。" class="w-full border-2 border-amber-200 rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#D4AF37]">${esc(a.q3)}</textarea>
+      </div>`;
+    const upd=()=>{ a.q1=document.getElementById('s1q1').value; a.q3=document.getElementById('s1q3').value; markDirty(); };
+    document.getElementById('s1q1').oninput=()=>{ upd(); s1q3label(word); };
+    document.getElementById('s1q3').oninput=upd;
+    s1q3label(word);
+    setNav(()=>{ S.wIdx--; renderStep1(); restoreIntroClass(); }, ()=>{ if(S.wIdx<3){S.wIdx++;renderStep1();}else{restoreIntroClass();completeStep('step1');} }, S.wIdx<3?'次へ進む →':'このワークを終える');
+  }
+  updateWorkAS();
+}
+function restoreIntroClass(){ document.getElementById('work-intro').className="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5"; }
+function buildWordGrid(){
+  const d=S.data.step1;
+  document.getElementById('w-grid').innerHTML=WORDS.map(w=>{
+    const on=d.words.includes(w);
+    return `<button onclick="toggleW('${w}')" style="padding:.8rem .2rem;border-radius:.75rem;font-size:1rem;font-weight:${on?700:600};background:${on?GR:'#fff'};color:${on?GD:'#2B2B28'};border:${on?`2px solid ${GR}`:'1.5px solid #DDD9CE'};width:100%" class="active:scale-95 transition-transform">${w}</button>`;
+  }).join('');
+}
+function toggleW(w){
+  const d=S.data.step1, i=d.words.indexOf(w);
+  if(i>-1)d.words.splice(i,1); else { if(d.words.length>=3){toast('言葉は3つまで選べます。','warning');return;} d.words.push(w); }
+  markDirty(); buildWordGrid();
+  document.getElementById('w-count').textContent=`選択数：${d.words.length} / 3`;
+  document.getElementById('w-done').classList.toggle('hidden',d.words.length!==3);
+}
+function s1q3label(word){
+  const q1=(document.getElementById('s1q1')?.value||'').trim();
+  const lbl=document.getElementById('s1q3lbl'), prev=document.getElementById('s1q3prev');
+  const badge=`<span style="background:${GD};color:#fff;font-size:.7rem;padding:.1rem .6rem;border-radius:.5rem;margin-right:.5rem">Q2</span>`;
+  if(q1){ lbl.innerHTML=badge+`あなたが「${word}」を選び、このように感じるようになった、人生の中での出来事や経験はどんなことでしたか？`; prev.textContent=`「${q1}」`; prev.classList.remove('hidden'); }
+  else { lbl.innerHTML=badge+`Q1にお答えいただくと、あなただけの質問が完成します。`; prev.classList.add('hidden'); }
+}
+</script>
+<script>
+/* ============ STEP2 人生ビジョンワーク ============ */
+/* 1ページ完結。葬式で言われたい言葉→なぜ2回→一言まとめ。後の質問は前の回答を反映 */
+function renderStep2(){
+  const d=S.data.step2;
+  d.phrase=d.phrase||''; d.why1=d.why1||''; d.why2=d.why2||''; d.summary=d.summary||'';
+  document.getElementById('work-pb').innerHTML=workPB('②',0,1,'人生ビジョンワーク');
+  restoreIntroClass();
+  document.getElementById('work-intro').innerHTML=`<h2 class="serif text-[#1B4332] text-xl font-bold mb-2">「どんな人でありたいか」を、未来から考える</h2>
+    <p class="text-sm text-[#6B6B64] leading-loose">少し不思議な質問から始めます。これは、あなたが本当に大切にしたい「生き方」をはっきりさせるためのワークです。気楽な気持ちでお答えください。</p>`;
+
+  const nm=S.name||'あなた';
+  document.getElementById('work-body').innerHTML=`
+    <!-- Q1 葬式の言葉 -->
+    <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5 space-y-3">
+      <p class="font-bold text-sm leading-loose"><span class="bg-[#1B4332] text-[#D4AF37] text-xs px-2 py-0.5 rounded-lg mr-2">Q1</span>
+      想像してみてください。ずっと先の未来、あなたの人生を見送る日に、ご家族や親しい人たちから「どんな人だった」と言ってもらえたら、いちばん嬉しいですか？</p>
+      <div class="bg-[#F7F5EF] rounded-xl p-3 text-sm leading-relaxed text-[#2B2B28]">
+        「${esc(nm)}さんは、<span class="text-[#B8922A] font-bold">〇〇</span>な人だった」
+      </div>
+      <label class="text-xs font-bold text-[#6B6B64]">〇〇に入る言葉を書いてください</label>
+      <textarea id="s2p" rows="2" placeholder="例）あたたかくて、まわりを笑顔にする" class="w-full border-2 border-[#DDD9CE] rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#1B4332]">${esc(d.phrase)}</textarea>
+    </div>
+
+    <!-- Q2 なぜ① -->
+    <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5 space-y-3">
+      <p id="s2w1lbl" class="font-bold text-sm leading-loose"></p>
+      <div id="s2w1prev" class="hidden bg-[#FFFBEA] border border-[#D4AF37] rounded-xl px-4 py-3 text-sm text-[#7A5C1E] leading-relaxed"></div>
+      <textarea id="s2w1" rows="3" placeholder="思いのままにお書きください。" class="w-full border-2 border-[#DDD9CE] rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#1B4332]">${esc(d.why1)}</textarea>
+    </div>
+
+    <!-- Q3 なぜ② -->
+    <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5 space-y-3">
+      <p id="s2w2lbl" class="font-bold text-sm leading-loose"></p>
+      <div id="s2w2prev" class="hidden bg-[#FFFBEA] border border-[#D4AF37] rounded-xl px-4 py-3 text-sm text-[#7A5C1E] leading-relaxed"></div>
+      <textarea id="s2w2" rows="3" placeholder="どんなことをしていれば、そう言われる人になれるでしょうか。" class="w-full border-2 border-[#DDD9CE] rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#1B4332]">${esc(d.why2)}</textarea>
+    </div>
+
+    <!-- Q4 一言まとめ（文型を選んで完成） -->
+    <div class="bg-white rounded-3xl border-l-4 border-[#D4AF37] border border-[#DDD9CE] shadow p-5 space-y-3">
+      <p class="font-bold text-sm leading-loose"><span class="bg-[#D4AF37] text-white text-xs px-2 py-0.5 rounded-lg mr-2">Q4</span>
+      ここまで書いてきたことを、ぎゅっと一言にまとめてみましょう。まず、しっくりくる<b>言い方</b>を選んでください。</p>
+
+      <div id="s2pat-grid" class="grid grid-cols-1 gap-2"></div>
+
+      <div id="s2sumprev" class="hidden bg-[#E7F0EA] rounded-xl px-4 py-3 text-base text-[#1B4332] leading-relaxed serif font-bold text-center"></div>
+
+      <label class="block text-xs font-bold text-[#6B6B64]">〇〇に入る言葉を書いてください</label>
+      <textarea id="s2sum" rows="2" placeholder="例）感謝と笑顔にあふれた" class="w-full border-2 border-amber-200 rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#D4AF37]">${esc(d.summary)}</textarea>
+    </div>`;
+
+  const upd=()=>{ d.phrase=document.getElementById('s2p').value; d.why1=document.getElementById('s2w1').value; d.why2=document.getElementById('s2w2').value; d.summary=document.getElementById('s2sum').value; markDirty(); };
+  document.getElementById('s2p').oninput=()=>{ upd(); s2labels(); };
+  document.getElementById('s2w1').oninput=()=>{ upd(); s2labels(); };
+  document.getElementById('s2w2').oninput=()=>{ upd(); s2labels(); };
+  document.getElementById('s2sum').oninput=()=>{ upd(); s2sumPreview(); };
+  if(!d.pattern) d.pattern=0;
+  buildS2Patterns();
+  s2labels();
+  s2sumPreview();
+
+  setNav(()=>goHub(), ()=>completeStep('step2'), 'このワークを終える');
+  updateWorkAS();
 }
 
-/* ---- Submit ---- */
-async function handleSubmit() {
+function s2labels(){
+  const nm=S.name||'あなた';
+  const p=(document.getElementById('s2p')?.value||'').trim();
+  const w1=(document.getElementById('s2w1')?.value||'').trim();
+  // なぜ①
+  const l1=document.getElementById('s2w1lbl'), pv1=document.getElementById('s2w1prev');
+  const b2=`<span style="background:${GR};color:${GD};font-size:.7rem;padding:.1rem .6rem;border-radius:.5rem;margin-right:.5rem">Q2</span>`;
+  if(p){ l1.innerHTML=b2+`なぜ、「${nm}さんは、このような人だった」と言われたいのですか？`; pv1.textContent=`「${nm}さんは、${p}な人だった」と言われたい`; pv1.classList.remove('hidden'); }
+  else { l1.innerHTML=b2+`Q1にお答えいただくと、次の質問が出てきます。`; pv1.classList.add('hidden'); }
+  // なぜ②
+  const l2=document.getElementById('s2w2lbl'), pv2=document.getElementById('s2w2prev');
+  const b3=`<span style="background:${GR};color:${GD};font-size:.7rem;padding:.1rem .6rem;border-radius:.5rem;margin-right:.5rem">Q3</span>`;
+  if(w1){ l2.innerHTML=b3+`あなたがどんな考えを持ち、どんな行動をしていれば、そう言われる人になれると思いますか？`; pv2.textContent=`「${w1}」`; pv2.classList.remove('hidden'); }
+  else { l2.innerHTML=b3+`Q2にお答えいただくと、次の質問が出てきます。`; pv2.classList.add('hidden'); }
+}
+
+/* ステップ②まとめの文型 */
+const S2_PATTERNS = [
+  { t:'私は、〇〇な人間である。', pre:'私は、', post:'な人間である。' },
+  { t:'私は、〇〇だ。',           pre:'私は、', post:'だ。' },
+  { t:'私は、〇〇をする人間だ。', pre:'私は、', post:'をする人間だ。' },
+];
+function buildS2Patterns(){
+  const d=S.data.step2;
+  document.getElementById('s2pat-grid').innerHTML=S2_PATTERNS.map((p,i)=>{
+    const on=d.pattern===i;
+    return `<button onclick="selectS2Pattern(${i})" style="text-align:left;padding:.7rem .9rem;border-radius:.9rem;font-size:.9rem;font-weight:${on?700:500};background:${on?GR:'#fff'};color:${on?'#fff':'#2B2B28'};border:${on?`2px solid ${GR}`:'1.5px solid #DDD9CE'}" class="active:scale-[.98] transition-transform">${on?'● ':'○ '}${p.t}</button>`;
+  }).join('');
+}
+function selectS2Pattern(i){ S.data.step2.pattern=i; markDirty(); buildS2Patterns(); s2sumPreview(); }
+/* 完成文を組み立てる（プレビュー・まとめ・管理画面で共通利用） */
+function s2sentence(d){
+  const pat=S2_PATTERNS[d.pattern||0]; const v=(d.summary||'').trim();
+  if(!v) return '';
+  if(pat.free) return v;
+  return pat.pre+v+pat.post;
+}
+function s2sumPreview(){
+  const d=S.data.step2; const sp=document.getElementById('s2sumprev');
+  const s=s2sentence(d);
+  if(s){ sp.textContent=s; sp.classList.remove('hidden'); }
+  else sp.classList.add('hidden');
+}
+</script>
+<script>
+/* ============ STEP3 目標設定ワーク ============ */
+/* 5項目を1ページずつ。各項目に「なりたい状態」と「続けたいこと」 */
+function renderStep3(){
+  const d=S.data.step3;
+  const f=GOAL_FIELDS[S.wIdx];
+  d[f.key]=d[f.key]||{qual:'',quant:''};
+  const v=d[f.key];
+  document.getElementById('work-pb').innerHTML=workPB('③',S.wIdx,GOAL_FIELDS.length,'目標設定ワーク');
+  restoreIntroClass();
+  document.getElementById('work-intro').innerHTML=`
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-full bg-[#F4F7F5] flex items-center justify-center text-2xl shrink-0">${f.icon}</div>
+      <div>
+        <p class="text-[#6B6B64] text-xs">${S.wIdx+1}つ目の分野</p>
+        <h2 class="serif text-[#1B4332] text-xl font-bold">${f.label}</h2>
+      </div>
+    </div>
+    ${S.wIdx===0?`<p class="mt-3 text-sm text-[#6B6B64] leading-loose">5つの分野について、それぞれ「<b class="text-[#2B2B28]">なりたい状態</b>」と「<b class="text-[#2B2B28]">何ができたら達成できたと感じられるか</b>」の2つを書きます。2つ目は、期間や回数など、できたことが自分でもはっきりわかるように具体的に書くのがポイントです。<br>（例：「家族と時間を過ごす」ではなく「家族と毎週土曜日に一緒に過ごす」）</p>`:''}`;
+
+  document.getElementById('work-body').innerHTML=`
+    <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5 space-y-3">
+      <p class="font-bold text-sm leading-loose"><span class="bg-[#1B4332] text-white text-xs px-2 py-0.5 rounded-lg mr-2">①</span>${f.qualQ}</p>
+      <p class="text-xs text-[#6B6B64] bg-[#F7F5EF] rounded-lg px-3 py-2 leading-relaxed">💡 これは「<b>言葉で表す理想の姿</b>」です。数字でなくてOK。<br>${f.qualEx}</p>
+      <textarea id="s3qual" rows="3" placeholder="あなたの理想の状態を書いてください。" class="w-full border-2 border-[#DDD9CE] rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#1B4332]">${esc(v.qual)}</textarea>
+    </div>
+    <div class="bg-white rounded-3xl border-l-4 border-[#D4AF37] border border-[#DDD9CE] shadow p-5 space-y-3">
+      <p class="font-bold text-sm leading-loose"><span class="bg-[#D4AF37] text-white text-xs px-2 py-0.5 rounded-lg mr-2">②</span>${f.quantQ}</p>
+      <p class="text-xs text-[#6B6B64] bg-[#FFFBEA] rounded-lg px-3 py-2 leading-relaxed">💡 期間・回数など、できたかどうかが自分でもはっきりわかる形で書きましょう。<br>${f.quantEx}</p>
+      <textarea id="s3quant" rows="3" placeholder="続けたいことを、回数や数で書いてください。" class="w-full border-2 border-amber-200 rounded-xl p-3 text-sm leading-loose focus:outline-none focus:border-[#D4AF37]">${esc(v.quant)}</textarea>
+    </div>`;
+  const upd=()=>{ v.qual=document.getElementById('s3qual').value; v.quant=document.getElementById('s3quant').value; markDirty(); };
+  document.getElementById('s3qual').oninput=upd;
+  document.getElementById('s3quant').oninput=upd;
+
+  setNav(
+    ()=>{ if(S.wIdx===0)goHub(); else {S.wIdx--;renderStep3();} },
+    ()=>{ if(S.wIdx<GOAL_FIELDS.length-1){S.wIdx++;renderStep3();}else completeStep('step3'); },
+    S.wIdx<GOAL_FIELDS.length-1?'次の分野へ →':'このワークを終える'
+  );
+  updateWorkAS();
+}
+
+/* ============ STEP4 計画立案ワーク ============ */
+/* 2ページ：3ヶ月後 / 1年後 */
+/* ステップ④ 各分野の記入例（3ヶ月後・1年後で別々／項目・行動） */
+const PLAN_EXAMPLES = {
+  health:   { m3i:'軽い運動を習慣にする',           m3a:'週2回、30分ウォーキングする',
+              y1i:'健康診断でオールA',             y1a:'毎晩12時前に寝て、週3回運動する' },
+  relation: { m3i:'家族と話す時間を増やす',         m3a:'毎週土曜日に家族で夕食を一緒にとる',
+              y1i:'家族と笑顔で過ごせる関係になる', y1a:'月1回、家族で外出する日をつくる' },
+  work:     { m3i:'その日の仕事をやりきる',         m3a:'毎朝、今日やること3つを書き出す',
+              y1i:'任された役割を一人でこなせる',   y1a:'月1冊、仕事に関する本を読む' },
+  money:    { m3i:'むだづかいを減らす',             m3a:'毎月3万円を先に貯金する',
+              y1i:'お金の不安を減らす',             y1a:'1年で貯金を50万円にする' },
+  hobby:    { m3i:'読書を習慣にする',               m3a:'月に2冊、本を読む',
+              y1i:'好きな英会話を身につける',       y1a:'週2回、30分オンライン英会話をする' },
+};
+function renderStep4(){
+  const d=S.data.step4;
+  GOAL_FIELDS.forEach(f=>{ if(!d[f.key]) d[f.key]={m3_item:'',m3_action:'',y1_item:'',y1_action:''}; });
+
+  document.getElementById('work-pb').innerHTML=workPB('④',0,1,'計画立案ワーク');
+  restoreIntroClass();
+  document.getElementById('work-intro').innerHTML=`<h2 class="serif text-[#1B4332] text-xl font-bold mb-2">目標に近づく計画を立てる</h2>
+    <p class="text-sm text-[#6B6B64] leading-loose">ステップ③で決めた<b class="text-[#2B2B28]">5つの分野</b>ごとに、計画を立てます。それぞれ「<b class="text-[#2B2B28]">3ヶ月後の目標</b>」と「<b class="text-[#2B2B28]">1年後の目標</b>」を、<b class="text-[#2B2B28]">項目</b>と<b class="text-[#2B2B28]">具体的な行動</b>のセットで書きましょう。空欄があっても大丈夫です。</p>`;
+
+  const intro = `
+    <div class="bg-[#E7F0EA] rounded-2xl p-4 text-sm leading-loose text-[#1B4332] space-y-2">
+      <div><b>📌 3ヶ月後の目標とは</b><br>「できているつもりで、よく考えるとできていないこと」。毎日の習慣や心がけで変えられることです。</div>
+      <div><b>📌 1年後の目標とは</b><br>自分ひとりで叶えられる目標でも、ご家族やまわりの人の協力を借りて叶える目標でも、どちらでも大丈夫です。あなたに合ったものを書いてください。</div>
+      <div class="bg-white/60 rounded-xl px-3 py-2 mt-1"><b>書き方</b>：まず「項目」（〜をする、など）を書き、その下に「具体的な行動」（数や回数）を書きます。<br>例）項目：早寝早起きをする ／ 行動：毎日12時前に寝る</div>
+    </div>`;
+
+  const field = (f,idx) => {
+    const v=d[f.key]; const ex=PLAN_EXAMPLES[f.key];
+    const block = (period, badgeBg, itemId, actId, itemVal, actVal, itemEx, actEx) => `
+      <div class="rounded-2xl border border-[#EDEAE0] p-3 space-y-3" style="background:#FCFBF7">
+        <p class="text-sm font-bold"><span class="text-white text-xs px-2 py-0.5 rounded-lg mr-2" style="background:${badgeBg}">${period}</span>叶えたい目標</p>
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-[#6B6B64]">項目（どうなりたいか）</label>
+          <input type="text" id="${itemId}" value="${esc(itemVal)}" placeholder="例）${itemEx}" class="w-full border-2 border-[#DDD9CE] rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1B4332]"/>
+        </div>
+        <div class="space-y-1">
+          <label class="text-xs font-bold text-[#6B6B64]">具体的な行動（何をするか）</label>
+          <input type="text" id="${actId}" value="${esc(actVal)}" placeholder="例）${actEx}" class="w-full border-2 border-[#DDD9CE] rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:border-[#1B4332]"/>
+        </div>
+      </div>`;
+    return `
+    <div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5 space-y-3">
+      <div class="flex items-center gap-2">
+        <span style="font-size:1.3rem">${f.icon}</span>
+        <h3 class="serif text-[#1B4332] font-bold text-base">${idx+1}. ${f.label}</h3>
+      </div>
+      ${block('3ヶ月後', GR, `s4-${f.key}-m3i`, `s4-${f.key}-m3a`, v.m3_item, v.m3_action, ex.m3i, ex.m3a)}
+      ${block('1年後', GD, `s4-${f.key}-y1i`, `s4-${f.key}-y1a`, v.y1_item, v.y1_action, ex.y1i, ex.y1a)}
+    </div>`;
+  };
+
+  document.getElementById('work-body').innerHTML=intro+GOAL_FIELDS.map((f,i)=>field(f,i)).join('');
+
+  GOAL_FIELDS.forEach(f=>{
+    const bind=(suffix,key)=>{ const el=document.getElementById(`s4-${f.key}-${suffix}`); el.oninput=()=>{ d[f.key][key]=el.value; markDirty(); }; };
+    bind('m3i','m3_item'); bind('m3a','m3_action'); bind('y1i','y1_item'); bind('y1a','y1_action');
+  });
+
+  setNav(()=>goHub(), ()=>completeStep('step4'), 'このワークを終える');
+  updateWorkAS();
+}
+</script>
+<script>
+/* ============ ステップ完了 ============ */
+function completeStep(id){
+  S.dirty=false; persistData();
+  const idx=STEPS.findIndex(s=>s.id===id);
+  const st=STEPS[idx];
+  document.getElementById('sd-title').textContent=st.no+' '+st.title;
+  const next=STEPS[idx+1];
+  const card=document.getElementById('sd-next-card');
+  if(next && !isStepDone(next.id)){
+    card.innerHTML=`<button onclick="openStep('${next.id}')" class="w-full bg-[#1B4332] text-white rounded-3xl shadow-lg p-5 text-left active:scale-95 transition-transform">
+      <p class="text-white/70 text-xs">次のステップへ進む</p>
+      <p class="serif font-bold text-lg mt-0.5">${next.icon} ${next.no} ${next.title}</p>
+      <p class="text-white/70 text-xs mt-1 leading-relaxed">${next.desc}</p>
+    </button>`;
+  } else if(!next){
+    card.innerHTML=`<button onclick="openSummary()" class="w-full bg-gradient-to-br from-[#1B4332] to-[#2D6A4F] text-white rounded-3xl shadow-lg p-5 text-left active:scale-95 transition-transform">
+      <p class="text-white/70 text-xs">すべてのワークが完成しました</p>
+      <p class="serif font-bold text-lg mt-0.5">🧭 わたしの羅針盤を見る</p>
+      <p class="text-white/70 text-xs mt-1 leading-relaxed">これまで書いたすべてを、一枚で見渡せます。</p>
+    </button>`;
+  } else card.innerHTML='';
+  goScreen('step-done');
+}
+
+/* ============ わたしの羅針盤（まとめ） ============ */
+/* ステップ④の1期間分（項目＋行動）を描画。qaFn は qa か admQA */
+function plan4(period, item, action, qaFn){
+  if(!item && !action) return '';
+  let h=`<p style="font-size:.72rem;font-weight:700;color:#B8922A;margin-top:.5rem">${period}に叶えたい目標</p>`;
+  h+=qaFn('項目', item);
+  h+=qaFn('具体的な行動', action);
+  return h;
+}
+
+function openSummary(){
+  document.getElementById('sum-name').textContent=(S.name||'')+' さんのワーク';
+  const parts=[];
+
+  // STEP1
+  const s1=S.data.step1;
+  if(s1.words?.length){
+    parts.push(card('🌱','① 人生理念ワーク', s1.words.map((w,i)=>{
+      const a=s1.answers[w]||{};
+      return `<div style="margin-top:${i?'.75rem':'0'}"><p class="serif" style="font-weight:700;color:${GR};font-size:1.1rem">${i+1}. ${w}</p>${qa('意味',a.q1)}${qa('経験・エピソード',a.q3)}</div>`;
+    }).join('')));
+  }
+  // STEP2
+  const s2=S.data.step2;
+  if(s2.summary||s2.phrase){
+    let h='';
+    if(s2.phrase) h+=qa('言われたい言葉',`${S.name||'あなた'}さんは、${s2.phrase}な人だった`);
+    if(s2.why1) h+=qa('なぜそう言われたいか',s2.why1);
+    if(s2.why2) h+=qa('そのために大切にすること',s2.why2);
+    if(s2.summary) h+=`<div style="margin-top:.75rem;background:#E7F0EA;border-radius:.75rem;padding:.75rem 1rem"><p style="font-size:.75rem;color:${GR};font-weight:700">わたしの宣言</p><p class="serif" style="font-size:1.05rem;font-weight:700;color:${GR};margin-top:.25rem;line-height:1.7">${esc(s2sentence(s2))}</p></div>`;
+    parts.push(card('🕊️','② 人生ビジョンワーク',h));
+  }
+  // STEP3
+  const s3=S.data.step3;
+  if(GOAL_FIELDS.some(f=>s3[f.key]?.qual||s3[f.key]?.quant)){
+    parts.push(card('🎯','③ 目標設定ワーク',GOAL_FIELDS.map(f=>{
+      const v=s3[f.key]||{}; if(!v.qual&&!v.quant)return '';
+      return `<div style="margin-top:.75rem"><p style="font-weight:700;color:${GR}">${f.icon} ${f.label}</p>${qa('なりたい状態',v.qual)}${qa('続けたいこと',v.quant)}</div>`;
+    }).join('')));
+  }
+  // STEP4
+  const s4=S.data.step4;
+  if(GOAL_FIELDS.some(f=>s4[f.key]&&(s4[f.key].m3_item||s4[f.key].m3_action||s4[f.key].y1_item||s4[f.key].y1_action))){
+    parts.push(card('🗓️','④ 計画立案ワーク',GOAL_FIELDS.map(f=>{
+      const v=s4[f.key]||{}; if(!v.m3_item&&!v.m3_action&&!v.y1_item&&!v.y1_action)return '';
+      return `<div style="margin-top:.75rem"><p style="font-weight:700;color:${GR}">${f.icon} ${f.label}</p>${plan4('3ヶ月後',v.m3_item,v.m3_action,qa)}${plan4('1年後',v.y1_item,v.y1_action,qa)}</div>`;
+    }).join('')));
+  }
+
+  if(!parts.length){
+    document.getElementById('sum-body').innerHTML=`<div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-6 text-center text-[#6B6B64] text-sm leading-loose">まだ記入されたワークがありません。<br>①から順番に進めてみましょう。</div>`;
+  } else {
+    document.getElementById('sum-body').innerHTML=parts.join('');
+  }
+  goScreen('summary');
+
+  function card(icon,title,inner){
+    return `<div class="bg-white rounded-3xl border border-[#DDD9CE] shadow p-5">
+      <div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem">
+        <span style="font-size:1.4rem">${icon}</span>
+        <h3 class="serif" style="font-weight:700;font-size:1.1rem;color:${GR}">${title}</h3>
+      </div>${inner}</div>`;
+  }
+  function qa(lbl,txt){
+    if(!txt||!txt.trim()) return '';
+    return `<div style="margin-top:.4rem"><p style="font-size:.72rem;font-weight:700;color:#2D6A4F">${lbl}</p><p style="font-size:.88rem;background:#F7F5EF;border-radius:.6rem;padding:.4rem .65rem;line-height:1.8;white-space:pre-wrap;margin-top:.15rem">${esc(txt)}</p></div>`;
+  }
+}
+
+async function submitAll(){
   S.status='submitted'; S.dirty=false;
   await persistData();
-  showDone();
+  document.getElementById('ad-code').textContent=S.code;
+  goScreen('alldone');
+  toast('院へ提出しました。ありがとうございました。','success');
 }
 
-function showDone() {
-  document.getElementById('dn-name').textContent=S.name;
-  document.getElementById('dn-code').textContent=S.code;
-  document.getElementById('dn-code2').textContent=S.code;
-  document.getElementById('dn-words').innerHTML=S.words.map(w=>`<span style="background:#E7F0EA;color:${GR};border:1px solid #C7DCD0;padding:.1rem .5rem;border-radius:.375rem;font-size:.75rem;font-weight:700">${w}</span>`).join('');
-  goScreen('done');
-}
-
-function editAgain() { S.status='draft'; showReview(); }
-
-/* ---- Save ---- */
-function markDirty() { S.dirty=true; }
-
-function startAutoSave() {
-  if(autoTimer) clearInterval(autoTimer);
-  autoTimer=setInterval(async()=>{ if(S.dirty&&S.code){ S.dirty=false; await persistData(); } }, 2500);
-}
-
-async function persistData() {
-  const data={
-    patientCode:S.code, name:S.name, patientName:S.name,
-    words:S.words, selectedWords:S.words,
-    answers:S.answers, definitions:S.answers,
-    status:S.status, updatedAt:new Date().toISOString()
+/* ============ 保存 ============ */
+function markDirty(){ S.dirty=true; }
+function startAuto(){ if(autoTimer)clearInterval(autoTimer); autoTimer=setInterval(async()=>{ if(S.dirty&&S.code){ S.dirty=false; await persistData(); } },2500); }
+async function persistData(){
+  const payload={
+    patientCode:S.code, code:S.code, name:S.name, patientName:S.name,
+    data:S.data, status:S.status, updatedAt:new Date().toISOString(),
+    adminMemo:S.adminMemo||'', memoUpdatedAt:S.memoUpdatedAt||null,
+    // 後方互換（旧管理画面でも理念だけは見える）
+    words:S.data.step1.words, selectedWords:S.data.step1.words
   };
-  localStorage.setItem(`pw_${S.code}`, JSON.stringify(data));
-  if(window._fb?.connected) await window._fbSave(S.code, data);
-  S.savedAt=data.updatedAt;
-  updateAS();
+  localStorage.setItem(`pw_${S.code}`,JSON.stringify(payload));
+  if(window._fb?.connected) await window._fbSave(S.code,payload);
+  S.savedAt=payload.updatedAt; updateWorkAS();
 }
-
-async function manualSave() {
-  if(!S.code){ toast("ログインしてください。","warning"); return; }
-  const nm=document.getElementById('name-input')?.value;
-  if(nm!==undefined) S.name=nm;
-  S.dirty=false; await persistData(); toast("保存しました。","success");
+async function manualSave(){ if(!S.code){toast('ログインしてください。','warning');return;} S.dirty=false; await persistData(); toast('保存しました。','success'); }
+</script>
+<script>
+/* ============ 管理者 ============ */
+function goAdminLogin(){ goScreen('admin-login'); }
+function handleAdminLogin(){
+  if(document.getElementById('adm-pass').value.trim()!==ADMP){ toast('暗証番号が一致しません。','error'); return; }
+  goScreen('admin-dash'); loadAdminData();
 }
-
-function updateAS() {
-  const txt=S.savedAt?`自動保存済み ${fmtDate(S.savedAt)}`:'';
-  ['as-name','as-words','as-wq','as-rv'].forEach(id=>{ const e=document.getElementById(id); if(e) e.textContent=txt; });
-}
-
-function fmtDate(iso) {
-  if(!iso) return '';
-  const d=new Date(iso);
-  return `${d.getFullYear()}/${pad(d.getMonth()+1)}/${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-function pad(n){return String(n).padStart(2,'0');}
-
-/* ---- Admin ---- */
-function goAdminLogin() { goScreen('admin-login'); }
-
-function handleAdminLogin() {
-  if(document.getElementById('adm-pass').value.trim()!==ADMP){ toast("暗証番号が一致しません。","error"); return; }
-  goScreen('admin-dash');
-  loadAdminData();
-}
-
-async function loadAdminData() {
+async function loadAdminData(){
   document.getElementById('adm-count').textContent='読み込み中...';
   let pts=[];
   if(window._fb?.connected) pts=await window._fbLoadAll();
   for(let i=0;i<localStorage.length;i++){
     const k=localStorage.key(i);
-    if(k.startsWith('pw_')){
-      const d=JSON.parse(localStorage.getItem(k));
-      const code=d.patientCode||d.code||'';
-      if(!pts.find(p=>(p.patientCode||p.code)===code)) pts.push(d);
-    }
+    if(k.startsWith('pw_')){ const d=JSON.parse(localStorage.getItem(k)); const c=d.patientCode||d.code; if(!pts.find(p=>(p.patientCode||p.code)===c)) pts.push(d); }
   }
-  S.admPatients=pts;
-  renderAdmList();
+  S.admPatients=pts; renderAdmList();
 }
-
-function setSort(s) {
+function setSort(s){
   S.admSort=s;
-  document.querySelectorAll('.srt').forEach(b=>{ b.style.background='#fff'; b.style.color='#6B6B64'; b.style.borderColor='#DDD9CE'; });
-  const a=document.getElementById(`s-${s}`);
-  if(a){a.style.background=GR;a.style.color='#fff';a.style.borderColor=GR;}
+  highlightSort();
   renderAdmList();
 }
-
-function renderAdmList() {
+function highlightSort(){
+  document.querySelectorAll('.srt').forEach(b=>{b.style.background='#fff';b.style.color='#6B6B64';b.style.borderColor='#DDD9CE';});
+  const a=document.getElementById(`s-${S.admSort}`); if(a){a.style.background=GR;a.style.color='#fff';a.style.borderColor=GR;}
+}
+function admStepStatus(p){
+  // データ構造からどのステップが完了/入力中か判定
+  const dt=p.data||{};
+  const checks=[];
+  // step1
+  const s1=dt.step1||{words:p.words||p.selectedWords||[],answers:p.answers||{}};
+  const s1done = s1.words?.length===3 && s1.words.every(w=>s1.answers?.[w]?.q1);
+  checks.push({no:'①',done:s1done,started:(s1.words?.length||0)>0});
+  const s2=dt.step2||{}; checks.push({no:'②',done:!!(s2.summary),started:!!(s2.phrase||s2.why1)});
+  const s3=dt.step3||{}; const s3done=GOAL_FIELDS.every(f=>s3[f.key]?.qual&&s3[f.key]?.quant); checks.push({no:'③',done:s3done,started:GOAL_FIELDS.some(f=>s3[f.key]?.qual)});
+  const s4=dt.step4||{}; checks.push({no:'④',done:GOAL_FIELDS.every(f=>s4[f.key]&&(s4[f.key].m3_item||s4[f.key].m3_action)&&(s4[f.key].y1_item||s4[f.key].y1_action)),started:GOAL_FIELDS.some(f=>s4[f.key]&&(s4[f.key].m3_item||s4[f.key].m3_action||s4[f.key].y1_item||s4[f.key].y1_action))});
+  return checks;
+}
+function renderAdmList(){
   const sorted=[...S.admPatients].sort((a,b)=>{
     if(S.admSort==='name') return (a.name||a.patientName||'').localeCompare(b.name||b.patientName||'','ja');
-    if(S.admSort==='submitted'){ const s=x=>x.status==='submitted'?0:1; if(s(a)!==s(b)) return s(a)-s(b); }
+    if(S.admSort==='submitted'){ const s=x=>x.status==='submitted'?0:1; if(s(a)!==s(b))return s(a)-s(b); }
     return (b.updatedAt||'').localeCompare(a.updatedAt||'');
   });
   document.getElementById('adm-count').textContent=`該当患者：${sorted.length}件`;
   document.getElementById('adm-list').innerHTML=sorted.map(p=>{
-    const name=p.name||p.patientName||'（名前未記入）';
-    const code=p.patientCode||p.code||'';
-    const ws=(p.words||p.selectedWords||[]).map(w=>`<span style="background:#E7F0EA;color:${GR};border:1px solid #C7DCD0;padding:.1rem .5rem;border-radius:.375rem;font-size:.7rem;font-weight:700">${w}</span>`).join(' ');
+    const name=p.name||p.patientName||'（名前未記入）'; const code=p.patientCode||p.code||'';
     const sub=p.status==='submitted';
+    const chips=admStepStatus(p).map(c=>`<span style="font-size:.65rem;font-weight:700;padding:.1rem .4rem;border-radius:.35rem;background:${c.done?GR:c.started?'#F6EFDD':'#EFEDE6'};color:${c.done?GD:c.started?'#B8922A':'#9C9C95'}">${c.no}</span>`).join(' ');
     return `<button onclick="openDetail('${code}')" style="width:100%;text-align:left">
       <div style="background:#fff;border-radius:1rem;border:1px solid #DDD9CE;box-shadow:0 2px 8px rgba(0,0,0,.04);padding:1rem">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:.5rem">
           <div style="flex:1;min-width:0">
             <p style="font-weight:700;font-size:1.05rem">${name}</p>
-            <p style="font-size:.75rem;color:#6B6B64">No.${code} ｜ ${fmtDate(p.updatedAt)}</p>
-            <p style="margin-top:.25rem">${ws}</p>
-            ${p.adminMemo?`<p style="margin-top:.25rem;font-size:.72rem;color:#6B6B64;background:#F6EFDD;border-radius:.375rem;padding:.15rem .5rem">📝 ${p.adminMemo.slice(0,40)}${p.adminMemo.length>40?'…':''}</p>`:''}
+            <p style="font-size:.72rem;color:#6B6B64">No.${code} ｜ ${fmtDate(p.updatedAt)}</p>
+            <div style="margin-top:.35rem;display:flex;gap:.25rem">${chips}</div>
+            ${p.adminMemo?`<p style="margin-top:.35rem;font-size:.7rem;color:#6B6B64;background:#F6EFDD;border-radius:.35rem;padding:.15rem .5rem">📝 ${esc(p.adminMemo.slice(0,36))}${p.adminMemo.length>36?'…':''}</p>`:''}
           </div>
-          <span style="background:${sub?GR:'#fff'};color:${sub?GD:'#6B6B64'};border:${sub?'none':'1.5px solid #DDD9CE'};padding:.2rem .75rem;border-radius:9999px;font-size:.7rem;font-weight:700;white-space:nowrap;flex-shrink:0">${sub?'提出済':'下書き'}</span>
+          <span style="background:${sub?GR:'#fff'};color:${sub?GD:'#6B6B64'};border:${sub?'none':'1.5px solid #DDD9CE'};padding:.2rem .7rem;border-radius:9999px;font-size:.7rem;font-weight:700;white-space:nowrap;flex-shrink:0">${sub?'提出済':'下書き'}</span>
         </div>
-      </div>
-    </button>`;
+      </div></button>`;
   }).join('');
-  setSort(S.admSort);
+  highlightSort();
 }
-
-function openDetail(code) {
-  const p=S.admPatients.find(x=>(x.patientCode||x.code)===code);
-  if(!p) return;
+function openDetail(code){
+  const p=S.admPatients.find(x=>(x.patientCode||x.code)===code); if(!p)return;
   S.admSel=p;
-  const name=p.name||p.patientName||'（名前未記入）';
-  const ws=p.words||p.selectedWords||[];
-  const sub=p.status==='submitted';
+  const name=p.name||p.patientName||'（名前未記入）'; const sub=p.status==='submitted';
   const badge=document.getElementById('adm-detail-badge');
-  badge.textContent=sub?'提出済み':'下書き（未提出）';
-  badge.style.background=sub?GR:'#F6EFDD'; badge.style.color=sub?GD:'#B8922A';
+  badge.textContent=sub?'提出済み':'下書き（未提出）'; badge.style.background=sub?GR:'#F6EFDD'; badge.style.color=sub?GD:'#B8922A';
+  document.getElementById('adm-detail-hdr').innerHTML=`<p class="serif" style="font-size:1.5rem;font-weight:700;color:${GR}">${name} 様</p><p style="font-size:.78rem;color:#6B6B64;margin-top:.25rem">暗証番号：${code} ｜ 最終更新：${fmtDate(p.updatedAt)}</p>`;
 
-  document.getElementById('adm-detail-hdr').innerHTML=`
-    <p style="font-family:'Noto Serif JP',serif;font-size:1.5rem;font-weight:700;color:${GR}">${name} 様</p>
-    <p style="font-size:.78rem;color:#6B6B64;margin-top:.25rem">暗証番号：${code} ｜ 最終更新：${fmtDate(p.updatedAt)}</p>
-    <div style="margin-top:.5rem;display:flex;flex-wrap:wrap;gap:.4rem">${ws.map(w=>`<span style="background:${GR};color:${GD};padding:.25rem .75rem;border-radius:9999px;font-weight:700">${w}</span>`).join('')}</div>
-  `;
+  const dt=p.data||{};
+  const blocks=[];
+  // step1
+  let s1=dt.step1;
+  if(!s1 && (p.words||p.selectedWords||p.definitions)){ const ws=p.words||p.selectedWords||[]; const ans={}; if(p.answers&&!Array.isArray(p.answers))Object.assign(ans,p.answers); else if(p.definitions){const df=p.definitions;ws.forEach((w,i)=>{ans[w]={q1:df[i+1]?.meaning||'',q2:df[i+1]?.reason||'',q3:df[i+1]?.episode||''};});} s1={words:ws,answers:ans}; }
+  if(s1?.words?.length){
+    blocks.push(admCard('🌱','① 人生理念ワーク', s1.words.map((w,i)=>{const a=s1.answers[w]||{};return `<div style="margin-top:${i?'.75rem':'0'}"><p class="serif" style="font-weight:700;color:${GR};font-size:1.05rem">${i+1}. ${w}</p>${admQA('意味',a.q1)}${admQA('経験',a.q3)}</div>`;}).join('')));
+  }
+  const s2=dt.step2||{};
+  if(s2.phrase||s2.summary){
+    let h=''; if(s2.phrase)h+=admQA('言われたい言葉',`${name}さんは、${s2.phrase}な人だった`); if(s2.why1)h+=admQA('理由①',s2.why1); if(s2.why2)h+=admQA('理由②',s2.why2); if(s2.summary)h+=admQA('まとめ',s2sentence(s2));
+    blocks.push(admCard('🕊️','② 人生ビジョンワーク',h));
+  }
+  const s3=dt.step3||{};
+  if(GOAL_FIELDS.some(f=>s3[f.key]?.qual||s3[f.key]?.quant)){
+    blocks.push(admCard('🎯','③ 目標設定ワーク',GOAL_FIELDS.map(f=>{const v=s3[f.key]||{};if(!v.qual&&!v.quant)return '';return `<div style="margin-top:.75rem"><p style="font-weight:700;color:${GR}">${f.icon} ${f.label}</p>${admQA('なりたい状態',v.qual)}${admQA('続けたいこと',v.quant)}</div>`;}).join('')));
+  }
+  const s4=dt.step4||{};
+  if(GOAL_FIELDS.some(f=>s4[f.key]&&(s4[f.key].m3_item||s4[f.key].m3_action||s4[f.key].y1_item||s4[f.key].y1_action))){ blocks.push(admCard('🗓️','④ 計画立案ワーク',GOAL_FIELDS.map(f=>{const v=s4[f.key]||{};if(!v.m3_item&&!v.m3_action&&!v.y1_item&&!v.y1_action)return '';return `<div style="margin-top:.75rem"><p style="font-weight:700;color:${GR}">${f.icon} ${f.label}</p>${plan4('3ヶ月後',v.m3_item,v.m3_action,admQA)}${plan4('1年後',v.y1_item,v.y1_action,admQA)}</div>`;}).join(''))); }
 
-  const ans=p.answers||{};
-  document.getElementById('adm-detail-ans').innerHTML=ws.map((w,i)=>{
-    let a=ans[w];
-    if(!a){
-      const d=p.definitions||{};
-      a={q1:d[i+1]?.meaning||d[i+1]?.q1||'', q2:d[i+1]?.reason||d[i+1]?.q2||'', q3:d[i+1]?.episode||d[i+1]?.q3||''};
-    }
-    const qa=(k,lbl)=>`<div><p style="font-size:.75rem;font-weight:700;color:#2D6A4F">${lbl}</p><p style="margin-top:.25rem;font-size:.9rem;background:#F7F5EF;border-radius:.75rem;padding:.5rem .75rem;line-height:1.8;white-space:pre-wrap">${a[k]||'（未記入）'}</p></div>`;
-    return `<div style="background:#fff;border-radius:1.5rem;border:1px solid #DDD9CE;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:1.25rem;display:flex;flex-direction:column;gap:.75rem">
-      <p style="font-family:'Noto Serif JP',serif;font-size:1.2rem;font-weight:700;color:${GR}"><span style="color:${GD}">${i+1}.</span> ${w}</p>
-      ${qa('q1','Q1. 人生における意味')}
-      ${qa('q2','Q2. なぜそう思うか')}
-      ${qa('q3','Q3. もとになった経験・エピソード')}
-    </div>`;
-  }).join('');
-
+  document.getElementById('adm-detail-ans').innerHTML=blocks.length?blocks.join(''):`<div class="bg-white rounded-3xl border border-[#DDD9CE] p-5 text-center text-[#6B6B64] text-sm">まだ回答がありません。</div>`;
   document.getElementById('adm-memo').value=p.adminMemo||'';
   document.getElementById('adm-memo-saved').textContent=p.memoUpdatedAt?`メモ最終保存：${fmtDate(p.memoUpdatedAt)}`:'';
   document.getElementById('adm-list-wrap').classList.add('hidden');
   document.getElementById('adm-detail').classList.remove('hidden');
   window.scrollTo({top:0,behavior:'smooth'});
-}
 
-function closeDetail() {
-  document.getElementById('adm-detail').classList.add('hidden');
-  document.getElementById('adm-list-wrap').classList.remove('hidden');
+  function admCard(icon,title,inner){ return `<div style="background:#fff;border-radius:1.5rem;border:1px solid #DDD9CE;box-shadow:0 2px 8px rgba(0,0,0,.05);padding:1.25rem"><div style="display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem"><span style="font-size:1.3rem">${icon}</span><h3 class="serif" style="font-weight:700;font-size:1.1rem;color:${GR}">${title}</h3></div>${inner}</div>`; }
+  function admQA(lbl,txt){ if(!txt||!txt.trim())return ''; return `<div style="margin-top:.4rem"><p style="font-size:.72rem;font-weight:700;color:#2D6A4F">${lbl}</p><p style="font-size:.88rem;background:#F7F5EF;border-radius:.6rem;padding:.4rem .65rem;line-height:1.8;white-space:pre-wrap;margin-top:.15rem">${esc(txt)}</p></div>`; }
 }
-
-async function saveAdminMemo() {
-  const p=S.admSel; if(!p) return;
-  const memo=document.getElementById('adm-memo').value;
-  const code=p.patientCode||p.code;
+function closeDetail(){ document.getElementById('adm-detail').classList.add('hidden'); document.getElementById('adm-list-wrap').classList.remove('hidden'); }
+async function saveAdminMemo(){
+  const p=S.admSel; if(!p)return;
+  const memo=document.getElementById('adm-memo').value; const code=p.patientCode||p.code;
   p.adminMemo=memo; p.memoUpdatedAt=new Date().toISOString();
-  localStorage.setItem(`pw_${code}`, JSON.stringify(p));
+  localStorage.setItem(`pw_${code}`,JSON.stringify(p));
   if(window._fb?.connected) await window._fbSave(code,{adminMemo:memo,memoUpdatedAt:p.memoUpdatedAt});
   document.getElementById('adm-memo-saved').textContent=`メモ最終保存：${fmtDate(p.memoUpdatedAt)}`;
-  toast("カルテメモを保存しました。","success");
+  toast('カルテメモを保存しました。','success');
 }
 </script>
 </body>
